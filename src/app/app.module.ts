@@ -47,6 +47,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule } from '@angular/material/dialog';
 import { UserLoginComponent } from './pages/user-login/user-login.component'
+import { AuthGuardService } from './services/auth-guard.service';
+import { ServiceService } from './services/service.service';
+import { AdminGuardService } from './services/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -102,7 +105,7 @@ import { UserLoginComponent } from './pages/user-login/user-login.component'
     MatCardModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [AuthGuardService,ServiceService,AdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

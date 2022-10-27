@@ -37,7 +37,7 @@ export class PagesRegisterComponent implements OnInit {
         .subscribe((res) => {
           this.router.navigate(['/','user-login']);
           // call getAllEvents() here
-        });;
+        });
     }
     
   }

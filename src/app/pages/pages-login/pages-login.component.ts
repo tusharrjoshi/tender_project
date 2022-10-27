@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
+import { ServiceService } from 'src/app/services/service.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class PagesLoginComponent implements OnInit {
     remember: new FormControl('')
   });
 
-  constructor(private router: Router,private  dialog:  MatDialog) { }
+  constructor(private router: Router,private  dialog:  MatDialog,public service: ServiceService) { }
 
   ngOnInit(): void {
     
@@ -26,8 +27,9 @@ export class PagesLoginComponent implements OnInit {
       if(localStorage.getItem('adminuser')){
         var getdata:any = localStorage.getItem('adminuser')
         var logincred:any = JSON.parse(getdata);
-        this.authenticate(logincred[0],logincred[1]);
-
+        if (this.service.isadmin(logincred[0],logincred[1])){
+          this.router.navigate(['/','dashboard']);
+        }
       }
 
     }
@@ -39,18 +41,12 @@ export class PagesLoginComponent implements OnInit {
   loginsubmit(){
     var username:any = this.loginpg.value['username'];
     var password:any = this.loginpg.value['password']
-    if(this.loginpg.value['remember']){localStorage.setItem('remember','true') 
+    
+    if (this.service.isadmin(username,password)){
+      if(this.loginpg.value['remember']){localStorage.setItem('remember','true')}
+      
       var logincred = [username,password]
       localStorage.setItem('adminuser', JSON.stringify(logincred));
-      console.log('info saved');
-    }
-    this.authenticate(username,password);
-  }
-
-  authenticate(username:any,password:any){
-    console.warn(username,password);
-    
-    if (username==='prit' && password=='123456'){
       this.router.navigate(['/','dashboard']);
     }
     else if(username===''||password===''){
@@ -70,5 +66,4 @@ export class PagesLoginComponent implements OnInit {
         }
     
   }
-
-}
+  }

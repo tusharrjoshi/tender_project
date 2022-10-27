@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
+import { ServiceService } from 'src/app/services/service.service';
 
 
 @Component({
@@ -18,16 +19,17 @@ export class UserLoginComponent implements OnInit {
     remember: new FormControl('')
   });
 
-  constructor(private router: Router,private  dialog:  MatDialog) { }
+  constructor(private router: Router,private  dialog:  MatDialog,public service: ServiceService) { }
 
   ngOnInit(): void {
     
     if(localStorage.getItem('remember')){
-      console.log('remembered');
-      if(localStorage.getItem('adminuser')){
-        var getdata:any = localStorage.getItem('adminuser')
+      if(localStorage.getItem('user')){
+        var getdata:any = localStorage.getItem('user')
         var logincred:any = JSON.parse(getdata);
-        this.authenticate(logincred[0],logincred[1]);
+        if (this.service.isadmin(logincred[0],logincred[1])){
+          this.router.navigate(['/','dashboard']);
+        }
       }
 
     }
@@ -39,15 +41,12 @@ export class UserLoginComponent implements OnInit {
   loginsubmit(){
     var username:any = this.userloginpg.value['username'];
     var password:any = this.userloginpg.value['password']
-    if(this.userloginpg.value['remember']){localStorage.setItem('remember','true') 
+    
+    if (this.service.isuser(username,password)){
+      if(this.userloginpg.value['remember']){localStorage.setItem('remember','true')}
+      
       var logincred = [username,password]
-      localStorage.setItem('adminuser', JSON.stringify(logincred));
-    }
-    this.authenticate(username,password);
-  }
-
-  authenticate(username:any,password:any){
-    if (username==='prit' && password=='123456'){
+      localStorage.setItem('user', JSON.stringify(logincred));
       this.router.navigate(['/','dashboard']);
     }
     else if(username===''||password===''){
@@ -67,5 +66,4 @@ export class UserLoginComponent implements OnInit {
         }
     
   }
-
-}
+  }
