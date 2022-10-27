@@ -1,0 +1,7 @@
+<h1 *ngIf="data.type==='alert'" mat-dialog-title align="center" style="color: red;">{{data.title}}</h1>
+<h1 *ngIf="data.type==='success'" mat-dialog-title align="center" style="color: #69bb7b;">{{data.title}}</h1>
+    <mat-dialog-content align="center" style="color: black;">{{data.message}}  </mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button  mat-raised-button  mat-dialog-close style="background-color: #0d6efd;">Close</button>
+</mat-dialog-actions>
+

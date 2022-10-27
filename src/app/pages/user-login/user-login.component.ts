@@ -7,12 +7,12 @@ import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 
 @Component({
   selector: 'app-pages-login',
-  templateUrl: './pages-login.component.html',
-  styleUrls: ['./pages-login.component.css']
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.css']
 })
-export class PagesLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit {
 
-  loginpg = new FormGroup({
+  userloginpg = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
     remember: new FormControl('')
@@ -23,11 +23,11 @@ export class PagesLoginComponent implements OnInit {
   ngOnInit(): void {
     
     if(localStorage.getItem('remember')){
+      console.log('remembered');
       if(localStorage.getItem('adminuser')){
         var getdata:any = localStorage.getItem('adminuser')
         var logincred:any = JSON.parse(getdata);
         this.authenticate(logincred[0],logincred[1]);
-
       }
 
     }
@@ -37,19 +37,16 @@ export class PagesLoginComponent implements OnInit {
   password:any;
 
   loginsubmit(){
-    var username:any = this.loginpg.value['username'];
-    var password:any = this.loginpg.value['password']
-    if(this.loginpg.value['remember']){localStorage.setItem('remember','true') 
+    var username:any = this.userloginpg.value['username'];
+    var password:any = this.userloginpg.value['password']
+    if(this.userloginpg.value['remember']){localStorage.setItem('remember','true') 
       var logincred = [username,password]
       localStorage.setItem('adminuser', JSON.stringify(logincred));
-      console.log('info saved');
     }
     this.authenticate(username,password);
   }
 
   authenticate(username:any,password:any){
-    console.warn(username,password);
-    
     if (username==='prit' && password=='123456'){
       this.router.navigate(['/','dashboard']);
     }
