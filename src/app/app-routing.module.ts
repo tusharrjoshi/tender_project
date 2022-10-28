@@ -36,6 +36,7 @@ import { UserLoginComponent } from './pages/user/user-login/user-login.component
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminGuardService } from './services/admin-guard.service';
+import { ForgotComponent } from './pages/user/forgot/forgot.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'user-login', pathMatch: 'full' },
@@ -73,6 +74,7 @@ const routes: Routes = [
   { path: 'user-login', component: UserLoginComponent },
   { path: 'pages-register', component: PagesRegisterComponent },
   { path: 'user-profile', component: UsersProfileComponent },
+  { path: 'forgot',component: ForgotComponent},
   { path: '**', component: PagesError404Component }
 ];
 

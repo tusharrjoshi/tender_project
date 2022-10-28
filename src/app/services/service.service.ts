@@ -56,4 +56,16 @@ export class ServiceService {
     return false;
   }
 
+  fgpasssendotp(cred:any){
+    return true;
+  }
+
+  validateotp(otp:any){
+    return true;
+  }
+
+  resendotp(){
+    
+  }
+
 }

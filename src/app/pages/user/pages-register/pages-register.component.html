@@ -26,6 +26,7 @@
                               <label for="yourPhone" class="form-label">Your Phone.No.</label>
                               <div class="input-group has-validation">
                                  <span class="input-group-text" id="inputGroupPrepend">+91</span> <input type="tel" name="phone" class="form-control" id="yourPhone" (change)="validphone($event)" required formControlName="phone">
+                                 <div class="invalid-feedback">Please enter a valid Phone Number!</div>
                               </div>
                                  <div class="invalid-feedback">Please enter a valid Phone Number!</div>
                                  <div *ngIf="!isphone && registerpg.value['phone']" class="invalid-user">Please enter a valid Phone Number.</div>
@@ -37,7 +38,7 @@
                                <div class="input-group has-validation">
                                   <span class="input-group-text" id="inputGroupPrepend">@</span> <input type="text" name="username" class="form-control" id="yourUsername" required (keyup)="validuser($event)" formControlName="username">
                                   
-                                  <div class="invalid-feedback">Please choose a username.</div>
+                                  <div class="invalid-feedback">Please choose a username.</div>  
                                   <div *ngIf="!isvaliduser && registerpg.value['username']" class="invalid-user">This username is already taken choose another!.</div>
                                   <div *ngIf="!isuser && registerpg.value['username']" class="invalid-user">The username must be of atleasst 6 letter.</div>
                                </div>

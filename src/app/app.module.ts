@@ -50,6 +50,10 @@ import { UserLoginComponent } from './pages/user/user-login/user-login.component
 import { AuthGuardService } from './services/auth-guard.service';
 import { ServiceService } from './services/service.service';
 import { AdminGuardService } from './services/admin-guard.service';
+import { ForgotComponent } from './pages/user/forgot/forgot.component';
+import { CountdownModule } from 'ngx-countdown';
+import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
+
 
 @NgModule({
   declarations: [
@@ -91,6 +95,8 @@ import { AdminGuardService } from './services/admin-guard.service';
     PagesBlankComponent,
     PopupComponent,
     UserLoginComponent,
+    ForgotComponent,
+    NewpasswordComponent,
 
   ],
   entryComponents: [PopupComponent],
@@ -103,7 +109,8 @@ import { AdminGuardService } from './services/admin-guard.service';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CountdownModule
   ],
   providers: [AuthGuardService,ServiceService,AdminGuardService],
   bootstrap: [AppComponent]

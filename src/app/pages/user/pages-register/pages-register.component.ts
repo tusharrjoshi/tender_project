@@ -25,6 +25,7 @@ export class PagesRegisterComponent implements OnInit {
   constructor(private  dialog:  MatDialog,private router: Router,private service: ServiceService) { }
 
   ngOnInit(): void {
+    
   }
 
   isvaliduser:boolean=true;
@@ -36,7 +37,7 @@ export class PagesRegisterComponent implements OnInit {
   isvalidpassword:boolean=true;
 
   registersubmit(){
-    if(this.registerpg.value['agreetnc'] && this.isvalidemail && this.isvalidname && this.isvalidphone && this.isvaliduser && this.isvalidpassword){
+    if(this.registerpg.value['agreetnc'] && this.registerpg.value['name'] &&this.registerpg.value['username'] &&this.registerpg.value['phone'] &&this.registerpg.value['email']&& this.registerpg.value['password']){
       this.dialog.open(PopupComponent,{ data: {
         title:'Success!',
         type:'success',
@@ -48,7 +49,6 @@ export class PagesRegisterComponent implements OnInit {
           // call getAllEvents() here
         });
     }
-    
   }
   validname(event:any){
     var name:string = event.target.value;
