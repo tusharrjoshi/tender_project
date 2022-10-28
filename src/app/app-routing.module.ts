@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/user/dashboard/dashboard.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { BadgesComponent } from './components/badges/badges.component';
@@ -25,14 +25,14 @@ import { TablesDataComponent } from './components/tables-data/tables-data.compon
 import { TablesGeneralComponent } from './components/tables-general/tables-general.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TooltipsComponent } from './components/tooltips/tooltips.component';
-import { PagesBlankComponent } from './pages/pages-blank/pages-blank.component';
-import { PagesContactComponent } from './pages/pages-contact/pages-contact.component';
-import { PagesError404Component } from './pages/pages-error404/pages-error404.component';
-import { PagesFaqComponent } from './pages/pages-faq/pages-faq.component';
-import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
-import { PagesRegisterComponent } from './pages/pages-register/pages-register.component';
-import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
-import { UserLoginComponent } from './pages/user-login/user-login.component';
+import { PagesBlankComponent } from './pages/admin/pages-blank/pages-blank.component';
+import { PagesContactComponent } from './pages/user/pages-contact/pages-contact.component';
+import { PagesError404Component } from './pages/admin/pages-error404/pages-error404.component';
+import { PagesFaqComponent } from './pages/user/pages-faq/pages-faq.component';
+import { PagesLoginComponent } from './pages/admin/pages-login/pages-login.component';
+import { PagesRegisterComponent } from './pages/user/pages-register/pages-register.component';
+import { UsersProfileComponent } from './pages/user/users-profile/users-profile.component';
+import { UserLoginComponent } from './pages/user/user-login/user-login.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminGuardService } from './services/admin-guard.service';

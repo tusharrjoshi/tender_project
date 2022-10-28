@@ -40,4 +40,20 @@ export class ServiceService {
     }
     else{return false}
   }
+
+  isvaliduser(username:string){
+    if(username!=='prit'){return true}
+    return false;
+  }
+
+  isvalidemail(email:string){
+    if(email!=='tendor@gmail.com'){return true}
+    return false;
+  }
+
+  isvalidphone(phone:string){
+    if(phone!=='7737788388'){return true}
+    return false;
+  }
+
 }

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/user/dashboard/dashboard.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { BadgesComponent } from './components/badges/badges.component';
@@ -31,13 +31,13 @@ import { ChartsApexchartsComponent } from './components/charts-apexcharts/charts
 import { IconsBootstrapComponent } from './components/icons-bootstrap/icons-bootstrap.component';
 import { IconsRemixComponent } from './components/icons-remix/icons-remix.component';
 import { IconsBoxiconsComponent } from './components/icons-boxicons/icons-boxicons.component';
-import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
-import { PagesFaqComponent } from './pages/pages-faq/pages-faq.component';
-import { PagesContactComponent } from './pages/pages-contact/pages-contact.component';
-import { PagesRegisterComponent } from './pages/pages-register/pages-register.component';
-import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
-import { PagesError404Component } from './pages/pages-error404/pages-error404.component';
-import { PagesBlankComponent } from './pages/pages-blank/pages-blank.component';
+import { UsersProfileComponent } from './pages/user/users-profile/users-profile.component';
+import { PagesFaqComponent } from './pages/user/pages-faq/pages-faq.component';
+import { PagesContactComponent } from './pages/user/pages-contact/pages-contact.component';
+import { PagesRegisterComponent } from './pages/user/pages-register/pages-register.component';
+import { PagesLoginComponent } from './pages/admin/pages-login/pages-login.component';
+import { PagesError404Component } from './pages/admin/pages-error404/pages-error404.component';
+import { PagesBlankComponent } from './pages/admin/pages-blank/pages-blank.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PopupComponent } from './layouts/popup/popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,7 +46,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule } from '@angular/material/dialog';
-import { UserLoginComponent } from './pages/user-login/user-login.component'
+import { UserLoginComponent } from './pages/user/user-login/user-login.component'
 import { AuthGuardService } from './services/auth-guard.service';
 import { ServiceService } from './services/service.service';
 import { AdminGuardService } from './services/admin-guard.service';

@@ -13,27 +13,39 @@
                          </div>
                          <form [formGroup]="registerpg" class="row g-3 needs-validation" (ngSubmit)="registersubmit()" >
                             <div class="col-12">
-                               <label for="yourName" class="form-label">Your Name</label> <input type="text" name="name" class="form-control" id="yourName" required formControlName="name">
+                               <label for="yourName" class="form-label">Your Name</label> <input type="text" name="name" class="form-control" id="yourName" (change)="validname($event)" required formControlName="name">
                                <div class="invalid-feedback">Please, enter your name!</div>
+                               <div *ngIf="!isvalidname && registerpg.value['name']" class="invalid-user">Please enter a valid name!.</div>
                             </div>
                             <div class="col-12">
-                               <label for="yourEmail" class="form-label">Your Email</label> <input type="email" name="email" class="form-control" id="yourEmail" required formControlName="email">
+                               <label for="yourEmail" class="form-label">Your Email</label> <input type="email" name="email" class="form-control" id="yourEmail" (change)="validemail($event)" required formControlName="email">
                                <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                               <div *ngIf="!isvalidemail && registerpg.value['email']" class="invalid-user">This email is already registered choose another!.</div>
                             </div>
                             <div class="col-12">
-                              <label for="yourPhone" class="form-label">Your Phone.No.</label> <input type="tel" name="phone" class="form-control" id="yourPhone" required formControlName="phone">
-                              <div class="invalid-feedback">Please enter a valid Phone Number!</div>
+                              <label for="yourPhone" class="form-label">Your Phone.No.</label>
+                              <div class="input-group has-validation">
+                                 <span class="input-group-text" id="inputGroupPrepend">+91</span> <input type="tel" name="phone" class="form-control" id="yourPhone" (change)="validphone($event)" required formControlName="phone">
+                              </div>
+                                 <div class="invalid-feedback">Please enter a valid Phone Number!</div>
+                                 <div *ngIf="!isphone && registerpg.value['phone']" class="invalid-user">Please enter a valid Phone Number.</div>
+                                 <div *ngIf="!isvalidphone && registerpg.value['phone']" class="invalid-user">This phonenumber is already registered!.</div>
+                               
                            </div>
                             <div class="col-12">
                                <label for="yourUsername" class="form-label">Username</label>
                                <div class="input-group has-validation">
-                                  <span class="input-group-text" id="inputGroupPrepend">@</span> <input type="text" name="username" class="form-control" id="yourUsername" required formControlName="username">
+                                  <span class="input-group-text" id="inputGroupPrepend">@</span> <input type="text" name="username" class="form-control" id="yourUsername" required (keyup)="validuser($event)" formControlName="username">
+                                  
                                   <div class="invalid-feedback">Please choose a username.</div>
+                                  <div *ngIf="!isvaliduser && registerpg.value['username']" class="invalid-user">This username is already taken choose another!.</div>
+                                  <div *ngIf="!isuser && registerpg.value['username']" class="invalid-user">The username must be of atleasst 6 letter.</div>
                                </div>
                             </div>
                             <div class="col-12">
-                               <label for="yourPassword" class="form-label">Password</label> <input type="password" name="password" class="form-control" id="yourPassword" required formControlName="password">
+                               <label for="yourPassword" class="form-label">Password</label> <input type="password" name="password" class="form-control" id="yourPassword" required formControlName="password" (change)="validpassword($event)">
                                <div class="invalid-feedback">Please enter your password!</div>
+                               <div *ngIf="!isvalidpassword && registerpg.value['password']" class="invalid-user">Password must be of atleast 8 characters containing one upper case letter,lowecase letter,special character and a number.</div>
                             </div>
                             <div class="col-12">
                                <div class="form-check">
