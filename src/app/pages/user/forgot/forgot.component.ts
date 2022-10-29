@@ -37,37 +37,51 @@ export class ForgotComponent implements OnInit {
       localStorage.setItem('countdown', `${ev.left / 1000}`);
     }
   }
-  isvalidcred:boolean;
+  isvalidcred:boolean = false;
+  showalert:boolean = false;
   showotp(){
     var cred:any = this.forgotpg.value['cred'];
+    this.service.fgpasssendotp(cred).then((res:any)=>{
+      if (res.valid){
+        this.isvalidcred = true;
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Success!',
+          type:'success',
+          message:  "OTP sent successfully",
+          button: 'Ok'
+          },width:'300px'});
+        }
+        else{this.showalert = true;}
+    })
     
-    if (this.service.fgpasssendotp(cred)){
-      this.isvalidcred = true;
-      }
   }
 
   proceed(){
     var otp:any = this.forgotpg.value['otp'];
+    var cred:any = this.forgotpg.value['cred'];
     if(otp){
-      if(this.service.validateotp(otp)){
-        this.dialog.open(PopupComponent,{ data: {
-          title:'Validation Successfull!',
-          type:'success',
-          message:  "Set up new password.",
-          button: "ok"
-          },width:'300px'})
-        .afterClosed()                                                            //call event after popup close
-        .subscribe((res) => {
-          this.router.navigate(['/','newpassword']);
-        });
-      }
-      else{
-        this.dialog.open(PopupComponent,{ data: {
-          title:'Alert!',
-          type:'alert',
-          message:  "OTP doesnot match!",
-          },width:'300px'});
-      }
+      this.service.validateotp(otp).then((res:any)=>{
+        if(res.valid){
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Validation Successfull!',
+            type:'success',
+            message:  "Set up new password.",
+            button: "ok"
+            },width:'300px'})
+          .afterClosed()                                                            //call event after popup close
+          .subscribe((res) => {
+            this.router.navigate(['/','newpassword'],{queryParams: {'cred': cred}});
+          });
+        }
+        else{
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Alert!',
+            type:'alert',
+            message:  "OTP doesnot match!",
+            },width:'300px'});
+        }
+      })
+      
     } 
   }
 
@@ -75,7 +89,17 @@ export class ForgotComponent implements OnInit {
     console.log(this.currtime);
     if(this.currtime==0){
       this.config = { ...this.config, leftTime: 60 };
-      this.service.resendotp();
+      this.service.resendotp(this.forgotpg.value['cred']).then((res:any)=>{
+        if(res.valid){
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Success!',
+            type:'success',
+            message:  "OTP resent successfully",
+            button: 'Ok'
+            },width:'300px'});
+        }
+      })
+      
     }
     
   }

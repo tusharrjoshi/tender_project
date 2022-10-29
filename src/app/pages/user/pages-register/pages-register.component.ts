@@ -38,16 +38,21 @@ export class PagesRegisterComponent implements OnInit {
 
   registersubmit(){
     if(this.registerpg.value['agreetnc'] && this.registerpg.value['name'] &&this.registerpg.value['username'] &&this.registerpg.value['phone'] &&this.registerpg.value['email']&& this.registerpg.value['password']){
-      this.dialog.open(PopupComponent,{ data: {
-        title:'Success!',
-        type:'success',
-        message:  "Account created successfully!."
-        },width:'300px'})
-        .afterClosed()                                                            //call event after popup close
-        .subscribe((res) => {
-          this.router.navigate(['/','user-login']);
-          // call getAllEvents() here
-        });
+      this.service.sendregisterotp(this.registerpg.value['email'],this.registerpg.value['phone']).then((res:any)=>{
+        if(res.valid){
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Success!',
+            type:'success',
+            message:  "Otp sent successfully!."
+            },width:'300px'})
+            .afterClosed()                                                            //call event after popup close
+            .subscribe((res) => {
+              this.router.navigate(['/','registerotp'],{queryParams: {name:this.registerpg.value['name'],email:this.registerpg.value['email'],phone:this.registerpg.value['phone'],username:this.registerpg.value['username'],pass:this.registerpg.value['password']},skipLocationChange: true});
+              // call getAllEvents() here
+            });
+          }
+      })
+      
     }
   }
   validname(event:any){
@@ -60,23 +65,31 @@ export class PagesRegisterComponent implements OnInit {
     var username = event.target.value
     if(/^[0-9a-zA-Z_.-]+$/.test(username) && username.length>=6 ){
       this.isuser = true
-      if(this.service.isvaliduser(event.target.value)){this.isvaliduser = true}
-    else(this.isvaliduser=false)
+      this.service.isvaliduser(event.target.value).then((res:any)=>{
+        if(res.valid){this.isvaliduser = true}
+      else(this.isvaliduser=false)
+      })
+      
     }
     else{this.isuser = false}
     
   }
-  validemail(event:any){    
-    if(this.service.isvalidemail(event.target.value)){this.isvalidemail = true}
-    else(this.isvalidemail=false)
+  validemail(event:any){
+    this.service.isvalidemail(event.target.value).then((res:any)=>{
+      if(res.valid){this.isvalidemail = true}
+      else(this.isvalidemail=false)
+    })    
+    
   }
   validphone(event:any){
     const regexExp = /^[6-9]\d{9}$/gi;
     if(regexExp.test(event.target.value)){
       this.isphone = true;
+      this.service.isvalidphone(event.target.value).then((res:any)=>{
+        if(res.valid){this.isvalidphone = true}
+        else(this.isvalidphone=false)
+      })
       
-      if(this.service.isvalidphone(event.target.value)){this.isvalidphone = true}
-      else(this.isvalidphone=false)
     }
     else{
       this.isphone = false;

@@ -23,13 +23,15 @@ export class PagesLoginComponent implements OnInit {
 
   ngOnInit(): void {
     
-    if(localStorage.getItem('remember')){
+    if(localStorage.getItem('adminremember')){
       if(localStorage.getItem('adminuser')){
         var getdata:any = localStorage.getItem('adminuser')
         var logincred:any = JSON.parse(getdata);
-        if (this.service.isadmin(logincred[0],logincred[1])){
-          this.router.navigate(['/','dashboard']);
-        }
+
+        this.service.isadmin(logincred[0],logincred[1]).then((res:any)=>{
+          if(res.isadmin){this.router.navigate(['/','dashboard']);}
+        })
+          
       }
 
     }
@@ -42,12 +44,22 @@ export class PagesLoginComponent implements OnInit {
     var username:any = this.loginpg.value['username'];
     var password:any = this.loginpg.value['password']
     
-    if (this.service.isadmin(username,password)){
-      if(this.loginpg.value['remember']){localStorage.setItem('remember','true')}
+    this.service.isadmin(username,password).then((res:any)=>{
+      if(res.isadmin)
+    {
+      if(this.loginpg.value['remember']){localStorage.setItem('adminremember','true')}
       
       var logincred = [username,password]
       localStorage.setItem('adminuser', JSON.stringify(logincred));
-      this.router.navigate(['/','dashboard']);
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Success!',
+        type:'success',
+        message:  "Login Successfull."
+        },width:'300px'}).afterClosed()
+        .subscribe((res)=>{
+          this.router.navigate(['/','dashboard']);
+        })
+      
     }
     else if(username===''||password===''){
       this.dialog.open(PopupComponent,{ data: {
@@ -64,6 +76,7 @@ export class PagesLoginComponent implements OnInit {
             message:  "Wrong login credentials try again."
             },width:'300px'});
         }
-    
+        
+      })
   }
   }

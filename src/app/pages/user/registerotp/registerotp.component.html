@@ -8,26 +8,18 @@
                    <div class="card mb-3">
                       <div class="card-body">
                          <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">Forgot Password</h5>
-                            <p class="text-center small">Enter your username or phone number</p>
+                            <h5 class="card-title text-center pb-0 fs-4">Register</h5>
+                            <p class="text-center small">Enter otp sent on your Email or phone number</p>
                          </div>
-                         <form [formGroup]="forgotpg" (ngSubmit)="proceed()" class="row g-3 needs-validation" novalidate >
+                         <form [formGroup]="registerotppg" (ngSubmit)="proceed()" class="row g-3 needs-validation" novalidate >
+                            
                             <div class="col-12">
-                               <label for="yourUsername" class="form-label">Email or Phone.no</label>
-                               <div class="input-group has-validation">
-                                  <span class="input-group-text" id="inputGroupPrepend">@</span> <input type="text" name="username" class="form-control" id="yourUsername" required formControlName="cred">
-                                  <div class="invalid-feedback">Please fill the entry.</div>
-                               </div>
-                               <div *ngIf=" forgotpg.value['cred'] && showalert" class="invalid-user">This is not a valid Credential. Try again!</div>
-                            </div>
-                            <div *ngIf="isvalidcred" class="col-12">
                                <label for="yourOTP" class="form-label">Enter OTP sent on your email or phone.no</label> <input type="number" name="otp" class="form-control" id="yourOTP" required formControlName="otp">
                                <div class="invalid-feedback">Please enter OTP!</div>
                                <p   class="small mb-0" class="resend" (click)="resendotp()"><strong>Resend otp</strong>  in {{currtime}} <countdown [hidden]="true" #cd [config]="config" (event)="handleEvent($event)" id="countdown"></countdown> seconds.</p>
                                
                             </div>
-                            <div class="col-12" *ngIf="!isvalidcred" > <button class="btn btn-primary w-100" type="submit" (click)="showotp()">SendOTP</button></div>
-                            <div class="col-12" *ngIf="isvalidcred"> <button class="btn btn-primary w-100" type="submit">Proceed</button></div>
+                            <div class="col-12"> <button class="btn btn-primary w-100" type="submit">Proceed</button></div>
                             
                          </form>
                       </div>

@@ -44,7 +44,7 @@
                                </div>
                             </div>
                             <div class="col-12">
-                               <label for="yourPassword" class="form-label">Password</label> <input type="password" name="password" class="form-control" id="yourPassword" required formControlName="password" (change)="validpassword($event)">
+                               <label for="yourPassword" class="form-label">Password</label><show-hide-password><input type="password" name="password" class="form-control" id="yourPassword" required formControlName="password" (change)="validpassword($event)"></show-hide-password>
                                <div class="invalid-feedback">Please enter your password!</div>
                                <div *ngIf="!isvalidpassword && registerpg.value['password']" class="invalid-user">Password must be of atleast 8 characters containing one upper case letter,lowecase letter,special character and a number.</div>
                             </div>

@@ -27,9 +27,12 @@ export class UserLoginComponent implements OnInit {
       if(localStorage.getItem('user')){
         var getdata:any = localStorage.getItem('user')
         var logincred:any = JSON.parse(getdata);
-        if (this.service.isadmin(logincred[0],logincred[1])){
-          this.router.navigate(['/','dashboard']);
-        }
+        this.service.isuser(logincred[0],logincred[1]).then((res:any)=>{
+          if (res.isuser){
+            this.router.navigate(['/','dashboard']);
+          }
+        });
+        
       }
 
     }
@@ -40,30 +43,32 @@ export class UserLoginComponent implements OnInit {
 
   loginsubmit(){
     var username:any = this.userloginpg.value['username'];
-    var password:any = this.userloginpg.value['password']
+    var password:any = this.userloginpg.value['password'];
+    this.service.isuser(username,password).then((res:any)=>{
+      if (res.isuser){
+        if(this.userloginpg.value['remember']){localStorage.setItem('remember','true')}
+        
+        var logincred = [username,password]
+        localStorage.setItem('user', JSON.stringify(logincred));
+        this.router.navigate(['/','dashboard']);
+      }
+      else if(username===''||password===''){
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert!',
+          type:'alert',
+          message:  "Please fill all the details."
+          },width:'300px'});
+      }
+      else
+          {
+              this.dialog.open(PopupComponent,{ data: {
+              title:'Alert!',
+              type:'alert',
+              message:  "Wrong login credentials try again."
+              },width:'300px'});
+          }
+    });
     
-    if (this.service.isuser(username,password)){
-      if(this.userloginpg.value['remember']){localStorage.setItem('remember','true')}
-      
-      var logincred = [username,password]
-      localStorage.setItem('user', JSON.stringify(logincred));
-      this.router.navigate(['/','dashboard']);
-    }
-    else if(username===''||password===''){
-      this.dialog.open(PopupComponent,{ data: {
-        title:'Alert!',
-        type:'alert',
-        message:  "Please fill all the details."
-        },width:'300px'});
-    }
-    else
-        {
-            this.dialog.open(PopupComponent,{ data: {
-            title:'Alert!',
-            type:'alert',
-            message:  "Wrong login credentials try again."
-            },width:'300px'});
-        }
     
   }
 

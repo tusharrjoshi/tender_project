@@ -12,22 +12,28 @@ export class AdminGuardService implements CanActivate {
  
     }
  
-    canActivate(route: ActivatedRouteSnapshot,
-                state: RouterStateSnapshot): boolean|UrlTree {
- 
-        if (!this.service.isAdminLoggedIn()) {
-
-            alert("You are not allowed to view this page. Please Login first!")
-            this.router.navigate(['/','pages-login']);
-
-            // this.router.navigate(["login"],{ queryParams: { retUrl: route.url} });
-            return false;
- 
-            //var urlTree = this.router.createUrlTree(['login']);
-            //return urlTree;
-        } 
- 
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+      ): boolean | UrlTree {
+        if (localStorage.getItem('adminuser')) {
+          var getdata: any = localStorage.getItem('adminuser');
+          var logincred: any = JSON.parse(getdata);
+    
+          this.service.isadmin(logincred[0], logincred[1]).then((res: any) => {
+            console.log(res);
+            
+            if (!res.isadmin) {
+              alert('You are not allowed to view this page. Please Login first!');
+              this.router.navigate(['/', 'pages-login']);
+              return false;
+            }
+          });
+        } else {
+          alert('You are not allowed to view this page. Please Login first!');
+          this.router.navigate(['/', 'pages-login']);
+          return false;
+        }
         return true;
+      }
     }
- 
-}

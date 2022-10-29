@@ -53,6 +53,10 @@ import { AdminGuardService } from './services/admin-guard.service';
 import { ForgotComponent } from './pages/user/forgot/forgot.component';
 import { CountdownModule } from 'ngx-countdown';
 import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
+import { RegisterotpComponent } from './pages/user/registerotp/registerotp.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 
 @NgModule({
@@ -97,6 +101,7 @@ import { NewpasswordComponent } from './pages/user/newpassword/newpassword.compo
     UserLoginComponent,
     ForgotComponent,
     NewpasswordComponent,
+    RegisterotpComponent,
 
   ],
   entryComponents: [PopupComponent],
@@ -110,7 +115,9 @@ import { NewpasswordComponent } from './pages/user/newpassword/newpassword.compo
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    CountdownModule
+    CountdownModule,
+    HttpClientModule,
+    ShowHidePasswordModule
   ],
   providers: [AuthGuardService,ServiceService,AdminGuardService],
   bootstrap: [AppComponent]

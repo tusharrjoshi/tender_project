@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,63 +10,62 @@ export class ServiceService {
   userpassword:string='';
   adminlogin:string='';
   adminpassword:string='';
-  constructor() { }
+  
+  constructor(public http: HttpClient) { }
+
+  api = 'http://localhost:5000/tender/';
+  
+
   isadmin(username:any,password:any){
-    var is:boolean=false;
-    if(username==='prit'&&password==='123456'){is=true}
-    return is;
+    return this.http.get(`${this.api}isadmin?username=${username}&password=${password}`).toPromise();
   }
   isuser(username:any,password:any){
-    var is:boolean=false;
-    if(username==='prit'&&password==='123456'){is=true}
-    return is;
+    return this.http.get(`${this.api}isuser?username=${username}&password=${password}`).toPromise();
   }
 
-  isUserLoggedIn():boolean{
-    if(localStorage.getItem('user')){
-      var getdata:any = localStorage.getItem('user')
-      var logincred:any = JSON.parse(getdata);
-      if (this.isuser(logincred[0],logincred[1])){return true}
-      else{return false}
-    }
-    else{return false}
-  }
-
-  isAdminLoggedIn():boolean{
-    if(localStorage.getItem('adminuser')){
-      var getdata:any = localStorage.getItem('adminuser')
-      var logincred:any = JSON.parse(getdata);
-      if (this.isuser(logincred[0],logincred[1])){return true}
-      else{return false}
-    }
-    else{return false}
-  }
 
   isvaliduser(username:string){
-    if(username!=='prit'){return true}
-    return false;
+    return this.http.get(`${this.api}isvaliduser?username=${username}`).toPromise();
   }
 
   isvalidemail(email:string){
-    if(email!=='tendor@gmail.com'){return true}
-    return false;
+    return this.http.get(`${this.api}isvalidemail?email=${email}`).toPromise();
   }
 
   isvalidphone(phone:string){
-    if(phone!=='7737788388'){return true}
-    return false;
+    return this.http.get(`${this.api}isvalidphone?phone=${phone}`).toPromise();
   }
 
   fgpasssendotp(cred:any){
-    return true;
+    return this.http.get(`${this.api}`).toPromise();
   }
 
-  validateotp(otp:any){
-    return true;
+  validateotp(otp:any){                           //api to validate otp
+    return this.http.get(`${this.api}`).toPromise();
   }
 
-  resendotp(){
-    
+  resendotp(cred:any){                            //to send otp for creating new password
+    return this.http.get(`${this.api}`).toPromise();
+  }
+
+  setnewpassword(cred:any,password:any){                //to set new password for given cred
+    return this.http.get(`${this.api}`).toPromise();
+  }
+
+  sendregisterotp(email:any,phone:any){                    //to send otp for registeration
+    return this.http.get(`${this.api}`).toPromise();
+  }
+
+  validateregisterotp(otp:any){                               //apito validate register otp
+    return this.http.get(`${this.api}`).toPromise();
+  }
+
+  resendregisterotp(email:any,phone:any){           //api to send otp for register details
+    return this.http.get(`${this.api}`).toPromise();
+  }
+
+  registernewuser(obj:any){                           //api to add a user
+    return this.http.get(`${this.api}`).toPromise();
   }
 
 }

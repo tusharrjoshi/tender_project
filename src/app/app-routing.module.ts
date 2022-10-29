@@ -37,11 +37,13 @@ import { UserLoginComponent } from './pages/user/user-login/user-login.component
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminGuardService } from './services/admin-guard.service';
 import { ForgotComponent } from './pages/user/forgot/forgot.component';
+import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
+import { RegisterotpComponent } from './pages/user/registerotp/registerotp.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'user-login', pathMatch: 'full' },
   // { path: '', component: DashboardComponent },
-  { path: 'dashboard', component: DashboardComponent,canActivate : [AuthGuardService]  },
+  { path: 'dashboard', component: DashboardComponent,canActivate : [AdminGuardService]  },
   { path: 'alerts', component: AlertsComponent },
   { path: 'accordion', component: AccordionComponent },
   { path: 'badges', component: BadgesComponent },
@@ -75,6 +77,8 @@ const routes: Routes = [
   { path: 'pages-register', component: PagesRegisterComponent },
   { path: 'user-profile', component: UsersProfileComponent },
   { path: 'forgot',component: ForgotComponent},
+  { path: 'newpassword',component: NewpasswordComponent},
+  { path: 'registerotp',component: RegisterotpComponent},
   { path: '**', component: PagesError404Component }
 ];
 
