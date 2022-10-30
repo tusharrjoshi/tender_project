@@ -30,6 +30,12 @@ export class PagesLoginComponent implements OnInit {
 
         this.service.isadmin(logincred[0],logincred[1]).then((res:any)=>{
           if(res.isadmin){this.router.navigate(['/','dashboard']);}
+        }).catch((err:any)=>{
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Server error!',
+            type:'alert',
+            message:  "Failed to connect to server"
+            },width:'300px'});
         })
           
       }
@@ -77,6 +83,12 @@ export class PagesLoginComponent implements OnInit {
             },width:'300px'});
         }
         
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })
   }
   }

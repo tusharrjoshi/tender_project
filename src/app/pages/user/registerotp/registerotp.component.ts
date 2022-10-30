@@ -68,6 +68,13 @@ export class RegisterotpComponent implements OnInit {
               this.router.navigate(['/','user-login']);
             });
           }
+        })
+        .catch((err:any)=>{
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Server error!',
+            type:'alert',
+            message:  "Failed to connect to server"
+            },width:'300px'});
         });
         
       }
@@ -78,6 +85,13 @@ export class RegisterotpComponent implements OnInit {
           message:  "OTP doesnot match!",
           },width:'300px'});
       }
+    })
+    .catch((err:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'});
     })
       
     } 
@@ -96,6 +110,13 @@ export class RegisterotpComponent implements OnInit {
             button: 'Ok'
             },width:'300px'});
         }
+      })
+      .catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })   
     }
     

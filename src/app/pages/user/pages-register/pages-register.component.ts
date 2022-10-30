@@ -51,6 +51,12 @@ export class PagesRegisterComponent implements OnInit {
               // call getAllEvents() here
             });
           }
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })
       
     }
@@ -68,6 +74,12 @@ export class PagesRegisterComponent implements OnInit {
       this.service.isvaliduser(event.target.value).then((res:any)=>{
         if(res.valid){this.isvaliduser = true}
       else(this.isvaliduser=false)
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })
       
     }
@@ -78,6 +90,12 @@ export class PagesRegisterComponent implements OnInit {
     this.service.isvalidemail(event.target.value).then((res:any)=>{
       if(res.valid){this.isvalidemail = true}
       else(this.isvalidemail=false)
+    }).catch((err:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'});
     })    
     
   }
@@ -88,6 +106,12 @@ export class PagesRegisterComponent implements OnInit {
       this.service.isvalidphone(event.target.value).then((res:any)=>{
         if(res.valid){this.isvalidphone = true}
         else(this.isvalidphone=false)
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })
       
     }

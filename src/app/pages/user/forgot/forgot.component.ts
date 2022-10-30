@@ -52,6 +52,12 @@ export class ForgotComponent implements OnInit {
           },width:'300px'});
         }
         else{this.showalert = true;}
+    }).catch((err:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'});
     })
     
   }
@@ -80,6 +86,12 @@ export class ForgotComponent implements OnInit {
             message:  "OTP doesnot match!",
             },width:'300px'});
         }
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })
       
     } 
@@ -98,6 +110,12 @@ export class ForgotComponent implements OnInit {
             button: 'Ok'
             },width:'300px'});
         }
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Server error!',
+          type:'alert',
+          message:  "Failed to connect to server"
+          },width:'300px'});
       })
       
     }

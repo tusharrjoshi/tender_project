@@ -66,6 +66,12 @@ export class NewpasswordComponent implements OnInit {
           this.router.navigate(['/','user-login']);
         });
     }
+    }).catch((err:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'});
     })
 
     

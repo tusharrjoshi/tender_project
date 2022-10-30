@@ -31,6 +31,13 @@ export class UserLoginComponent implements OnInit {
           if (res.isuser){
             this.router.navigate(['/','dashboard']);
           }
+        })
+        .catch((err:any)=>{
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Server error!',
+            type:'alert',
+            message:  "Failed to connect to server"
+            },width:'300px'});
         });
         
       }
@@ -67,7 +74,15 @@ export class UserLoginComponent implements OnInit {
               message:  "Wrong login credentials try again."
               },width:'300px'});
           }
-    });
+    })
+    .catch((err:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'});
+    })
+    ;
     
     
   }
