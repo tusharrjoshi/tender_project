@@ -57,7 +57,7 @@ export class PagesLoginComponent implements OnInit {
         message:  "Login Successfull."
         },width:'300px'}).afterClosed()
         .subscribe((res)=>{
-          this.router.navigate(['/','dashboard']);
+          this.router.navigate(['/','admin-dashboard']);
         })
       
     }

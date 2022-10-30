@@ -57,6 +57,9 @@ import { RegisterotpComponent } from './pages/user/registerotp/registerotp.compo
 
 import { HttpClientModule } from '@angular/common/http';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { AdminHeaderComponent } from './layouts/admin-header/admin-header.component';
+import { AdminSidebarComponent } from './layouts/admin-sidebar/admin-sidebar.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -102,6 +105,9 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
     ForgotComponent,
     NewpasswordComponent,
     RegisterotpComponent,
+    AdminHeaderComponent,
+    AdminSidebarComponent,
+    AdminDashboardComponent,
 
   ],
   entryComponents: [PopupComponent],

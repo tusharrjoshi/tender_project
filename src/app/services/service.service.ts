@@ -37,7 +37,7 @@ export class ServiceService {
   }
 
   fgpasssendotp(cred:any){
-    return this.http.get(`${this.api}`).toPromise();
+    return this.http.get(`${this.api}`).toPromise(); 
   }
 
   validateotp(otp:any){                           //api to validate otp

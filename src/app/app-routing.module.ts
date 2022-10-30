@@ -39,11 +39,12 @@ import { AdminGuardService } from './services/admin-guard.service';
 import { ForgotComponent } from './pages/user/forgot/forgot.component';
 import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
 import { RegisterotpComponent } from './pages/user/registerotp/registerotp.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'user-login', pathMatch: 'full' },
   // { path: '', component: DashboardComponent },
-  { path: 'dashboard', component: DashboardComponent,canActivate : [AdminGuardService]  },
+  { path: 'dashboard', component: DashboardComponent,canActivate : [AuthGuardService]  },
   { path: 'alerts', component: AlertsComponent },
   { path: 'accordion', component: AccordionComponent },
   { path: 'badges', component: BadgesComponent },
@@ -79,6 +80,7 @@ const routes: Routes = [
   { path: 'forgot',component: ForgotComponent},
   { path: 'newpassword',component: NewpasswordComponent},
   { path: 'registerotp',component: RegisterotpComponent},
+  { path: 'admin-dashboard',component: AdminDashboardComponent,canActivate : [AdminGuardService]},
   { path: '**', component: PagesError404Component }
 ];
 
