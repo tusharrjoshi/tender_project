@@ -21,6 +21,8 @@ export class AdminDashboardComponent implements OnInit {
 
     this.adminservice.gettenderlist(cred[0]).then((res:any)=>{
       this.tenderlist = res.tenderlist;
+      console.log(this.tenderlist);
+      
     }).catch((err:any)=>{
       this.dialog.open(PopupComponent,{ data: {
         title:'Server error!',

@@ -61,6 +61,7 @@ import { AdminHeaderComponent } from './layouts/admin-header/admin-header.compon
 import { AdminSidebarComponent } from './layouts/admin-sidebar/admin-sidebar.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AdminServiceService } from './services/admin-service.service';
+import { AdminAddtenderComponent } from './pages/admin/admin-addtender/admin-addtender.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { AdminServiceService } from './services/admin-service.service';
     AdminHeaderComponent,
     AdminSidebarComponent,
     AdminDashboardComponent,
+    AdminAddtenderComponent,
 
   ],
   entryComponents: [PopupComponent],

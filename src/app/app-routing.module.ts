@@ -40,6 +40,7 @@ import { ForgotComponent } from './pages/user/forgot/forgot.component';
 import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
 import { RegisterotpComponent } from './pages/user/registerotp/registerotp.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AdminAddtenderComponent } from './pages/admin/admin-addtender/admin-addtender.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'user-login', pathMatch: 'full' },
@@ -80,7 +81,10 @@ const routes: Routes = [
   { path: 'forgot',component: ForgotComponent},
   { path: 'newpassword',component: NewpasswordComponent},
   { path: 'registerotp',component: RegisterotpComponent},
+
   { path: 'admin-dashboard',component: AdminDashboardComponent,canActivate : [AdminGuardService]},
+  { path: 'admin-addtender',component: AdminAddtenderComponent,canActivate : [AdminGuardService]},
+
   { path: '**', component: PagesError404Component }
 ];
 
