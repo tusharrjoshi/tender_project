@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot,RouterStateSnapshot, UrlTree } from '@angular/router';
-import { ServiceService } from './service.service';
+import { AdminServiceService } from '../admin-service.service';
 import { Observable } from 'rxjs';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 @Injectable()
 export class AdminGuardService implements CanActivate {
  
-    constructor(private router:Router, private service: ServiceService,private  dialog:  MatDialog) {
+    constructor(private router:Router, private service: AdminServiceService,private  dialog:  MatDialog) {
  
     }
  

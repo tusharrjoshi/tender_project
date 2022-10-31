@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
-import { ServiceService } from 'src/app/services/service.service';
+import { AdminServiceService } from 'src/app/services/admin-service.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class PagesLoginComponent implements OnInit {
     remember: new FormControl('')
   });
 
-  constructor(private router: Router,private  dialog:  MatDialog,public service: ServiceService) { }
+  constructor(private router: Router,private  dialog:  MatDialog,public service: AdminServiceService) { }
 
   ngOnInit(): void {
     

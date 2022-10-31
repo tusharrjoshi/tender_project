@@ -34,8 +34,8 @@ import { PagesRegisterComponent } from './pages/user/pages-register/pages-regist
 import { UsersProfileComponent } from './pages/user/users-profile/users-profile.component';
 import { UserLoginComponent } from './pages/user/user-login/user-login.component';
 
-import { AuthGuardService } from './services/auth-guard.service';
-import { AdminGuardService } from './services/admin-guard.service';
+import { AuthGuardService } from './services/auth-service/auth-guard.service';
+import { AdminGuardService } from './services/auth-service/admin-guard.service';
 import { ForgotComponent } from './pages/user/forgot/forgot.component';
 import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
 import { RegisterotpComponent } from './pages/user/registerotp/registerotp.component';

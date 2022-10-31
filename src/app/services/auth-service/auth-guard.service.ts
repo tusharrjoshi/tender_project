@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { ServiceService } from './service.service';
+import { ServiceService } from '../service.service';
 import { Observable } from 'rxjs';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';

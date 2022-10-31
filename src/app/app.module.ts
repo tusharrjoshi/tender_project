@@ -47,9 +47,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule } from '@angular/material/dialog';
 import { UserLoginComponent } from './pages/user/user-login/user-login.component'
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuardService } from './services/auth-service/auth-guard.service';
 import { ServiceService } from './services/service.service';
-import { AdminGuardService } from './services/admin-guard.service';
+import { AdminGuardService } from './services/auth-service/admin-guard.service';
 import { ForgotComponent } from './pages/user/forgot/forgot.component';
 import { CountdownModule } from 'ngx-countdown';
 import { NewpasswordComponent } from './pages/user/newpassword/newpassword.component';
@@ -60,6 +60,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import { AdminHeaderComponent } from './layouts/admin-header/admin-header.component';
 import { AdminSidebarComponent } from './layouts/admin-sidebar/admin-sidebar.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AdminServiceService } from './services/admin-service.service';
 
 
 @NgModule({
@@ -125,7 +126,7 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
     HttpClientModule,
     ShowHidePasswordModule
   ],
-  providers: [AuthGuardService,ServiceService,AdminGuardService],
+  providers: [AuthGuardService,ServiceService,AdminGuardService,AdminServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

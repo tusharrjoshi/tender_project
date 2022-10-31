@@ -15,10 +15,6 @@ export class ServiceService {
 
   api = 'http://localhost:5000/tender/';
   
-
-  isadmin(username:any,password:any){
-    return this.http.get(`${this.api}isadmin?username=${username}&password=${password}`).toPromise();
-  }
   isuser(username:any,password:any){
     return this.http.get(`${this.api}isuser?username=${username}&password=${password}`).toPromise();
   }
