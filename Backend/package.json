@@ -2,7 +2,11 @@
   "name": "demo",
   "version": "1.0.0",
   "description": "",
+<<<<<<< HEAD
   "main": "app.js",
+=======
+  "main": "index.js",
+>>>>>>> caf0a9fb7c2638d26fae15812e8636446f4f0f95
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -11,8 +15,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "express": "^4.17.1",
+=======
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+>>>>>>> caf0a9fb7c2638d26fae15812e8636446f4f0f95
     "nodemon": "^2.0.12"
   }
 }
