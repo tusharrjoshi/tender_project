@@ -33,16 +33,7 @@
                                  <div *ngIf="!isvalidphone && registerpg.value['phone']" class="invalid-user">This phonenumber is already registered!.</div>
                                
                            </div>
-                            <div class="col-12">
-                               <label for="yourUsername" class="form-label">Username</label>
-                               <div class="input-group has-validation">
-                                  <span class="input-group-text" id="inputGroupPrepend">@</span> <input type="text" name="username" class="form-control" id="yourUsername" required (keyup)="validuser($event)" formControlName="username">
-                                  
-                                  <div class="invalid-feedback">Please choose a username.</div>  
-                                  <div *ngIf="!isvaliduser && registerpg.value['username']" class="invalid-user">This username is already taken choose another!.</div>
-                                  <div *ngIf="!isuser && registerpg.value['username']" class="invalid-user">The username must be of atleasst 6 letter.</div>
-                               </div>
-                            </div>
+                            
                             <div class="col-12">
                                <label for="yourPassword" class="form-label">Password</label><show-hide-password><input type="password" name="password" class="form-control" id="yourPassword" required formControlName="password" (change)="validpassword($event)"></show-hide-password>
                                <div class="invalid-feedback">Please enter your password!</div>

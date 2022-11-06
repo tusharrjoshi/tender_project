@@ -12,24 +12,43 @@ export class ServiceService {
   adminpassword:string='';
   
   constructor(public http: HttpClient) { }
-
-  api = 'http://localhost:5000/tender/';
   
+
+  api = 'http://localhost:3000/';
+  
+  headers = new HttpHeaders({
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
+  options = { headers: this.headers };
+
   isuser(username:any,password:any){
-    return this.http.get(`${this.api}isuser?username=${username}&password=${password}`).toPromise();
+    var body:any={
+      email:username,
+      password:password
+    }
+    return this.http.post<any>('http://localhost:3000/login',body).toPromise();
   }
 
-
-  isvaliduser(username:string){
-    return this.http.get(`${this.api}isvaliduser?username=${username}`).toPromise();
+  isloggedin(token:any){
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization',  `Basic ${token}`)
+    }
+    
+    return this.http.get('http://localhost:3000/islogin', header).toPromise();
   }
 
-  isvalidemail(email:string){
-    return this.http.get(`${this.api}isvalidemail?email=${email}`).toPromise();
+  isvalidemail(email:string){console.log(111)
+    var body:any={
+      email:email
+    }
+    return this.http.post<any>(`${this.api}isvalidemail`,body).toPromise();
   }
 
   isvalidphone(phone:string){
-    return this.http.get(`${this.api}isvalidphone?phone=${phone}`).toPromise();
+    var body:any={
+      phone:phone
+    }
+    return this.http.post<any>(`${this.api}isvalidphone`,body).toPromise();
   }
 
   fgpasssendotp(cred:any){
@@ -60,8 +79,9 @@ export class ServiceService {
     return this.http.get(`${this.api}`).toPromise();
   }
 
-  registernewuser(obj:any){                           //api to add a user
-    return this.http.get(`${this.api}`).toPromise();
+  registernewuser(obj:any){      
+    var body = obj;                                     //api to add a user
+    return this.http.post<any>(`${this.api}register`,body).toPromise();
   }
 
 }

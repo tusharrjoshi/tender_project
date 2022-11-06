@@ -19,22 +19,35 @@ export class AuthGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree {
-    if (localStorage.getItem('user')) {
-      var getdata: any = localStorage.getItem('user');
-      var logincred: any = JSON.parse(getdata);
-
-      this.service.isuser(logincred[0], logincred[1]).then((res: any) => {
-        if (!res.isuser) {
+    if (sessionStorage.getItem("usertoken")) {
+      var token = sessionStorage.getItem("usertoken");
+      
+      this.service.isloggedin(token).then((res: any) => {
+        
+        if (!res.status) {
           alert('You are not allowed to view this page. Please Login first!');
           this.router.navigate(['/', 'user-login']);
           return false;
         }
+        else{
+          return true;
+        }
       }).catch((err:any)=>{
-        this.dialog.open(PopupComponent,{ data: {
-          title:'Server error!',
-          type:'alert',
-          message:  "Failed to connect to server"
-          },width:'300px'}).afterClosed().subscribe(()=>{this.router.navigate(['/', 'user-login']);});
+        if(err.error.status==="failed"){
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Server error!',
+            type:'alert',
+            message:  err.error.msg
+            },width:'300px'}).afterClosed().subscribe(()=>{this.router.navigate(['/', 'user-login']);});
+        }
+        else{
+          this.dialog.open(PopupComponent,{ data: {
+            title:'Server error!',
+            type:'alert',
+            message:  "Failed to connect to server"
+            },width:'300px'}).afterClosed().subscribe(()=>{this.router.navigate(['/', 'user-login']);});
+        }
+        
           return false;
           
       });

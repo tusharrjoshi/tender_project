@@ -18,21 +18,16 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     var getdata:any = localStorage.getItem('adminuser')
     var cred:any = JSON.parse(getdata);
-<<<<<<< HEAD
-
-=======
     console.log("befr api called");
     
->>>>>>> caf0a9fb7c2638d26fae15812e8636446f4f0f95
+
     this.adminservice.gettenderlist(cred[0]).then((res:any)=>{
       this.tenderlist = res.tenderlist;
       console.log(this.tenderlist);
       
     }).catch((err:any)=>{
-<<<<<<< HEAD
-=======
-      console.log("api not called");
->>>>>>> caf0a9fb7c2638d26fae15812e8636446f4f0f95
+
+
       this.dialog.open(PopupComponent,{ data: {
         title:'Server error!',
         type:'alert',

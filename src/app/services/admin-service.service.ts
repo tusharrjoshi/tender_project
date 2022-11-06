@@ -18,11 +18,16 @@ export class AdminServiceService {
   
 
   isadmin(username:any,password:any){
-    return this.http.get(`${this.api}isadmin?username=${username}&password=${password}`).toPromise();
+    var body:any={
+      email:username,
+      password:password
+    }
+    
+    return this.http.post<any>('http://localhost:3000/login',body).toPromise();
   }
 
   gettenderlist(username:any){
-    return this.http.get(`${this.api}gettenderlist?username=${username}`).toPromise();
+    return this.http.get(`http://localhost:3000/gettenderlist?username=${username}`).toPromise();
   }
 
 }

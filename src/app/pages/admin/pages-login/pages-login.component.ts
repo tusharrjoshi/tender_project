@@ -15,80 +15,83 @@ export class PagesLoginComponent implements OnInit {
 
   loginpg = new FormGroup({
     username: new FormControl(''),
-    password: new FormControl(''),
-    remember: new FormControl('')
+    password: new FormControl('')
   });
 
   constructor(private router: Router,private  dialog:  MatDialog,public service: AdminServiceService) { }
 
-  ngOnInit(): void {
-    
-    if(localStorage.getItem('adminremember')){
-      if(localStorage.getItem('adminuser')){
-        var getdata:any = localStorage.getItem('adminuser')
-        var logincred:any = JSON.parse(getdata);
 
-        this.service.isadmin(logincred[0],logincred[1]).then((res:any)=>{
-          if(res.isadmin){this.router.navigate(['/','dashboard']);}
-        }).catch((err:any)=>{
-          this.dialog.open(PopupComponent,{ data: {
-            title:'Server error!',
-            type:'alert',
-            message:  "Failed to connect to server"
-            },width:'300px'});
-        })
+    ngOnInit(): void {
+    
+      // if(localStorage.getItem('remember')){
+      //   if(localStorage.getItem('user')){
+      //     var getdata:any = localStorage.getItem('user')
+      //     var logincred:any = JSON.parse(getdata);
+      //     this.service.isuser(logincred[0],logincred[1]).then((res:any)=>{
+      //       if (res.isuser){
+      //         this.router.navigate(['/','dashboard']);
+      //       }
+      //     })
+      //     .catch((err:any)=>{
+      //       this.dialog.open(PopupComponent,{ data: {
+      //         title:'Server error!',
+      //         type:'alert',
+      //         message:  "Failed to connect to server"
+      //         },width:'300px'});
+      //     });
           
+      //   }
+  
+      // }
+      
+    }
+    username:any;
+    password:any;
+  
+    loginsubmit(){
+      var username:any = this.loginpg.value['username'];
+      var password:any = this.loginpg.value['password'];
+      
+      if(username===''||password===''){
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert!',
+          type:'alert',
+          message:  "Please fill all the details."
+          },width:'300px'});
       }
-
-    }
-    
-  }
-  username:any;
-  password:any;
-
-  loginsubmit(){
-    var username:any = this.loginpg.value['username'];
-    var password:any = this.loginpg.value['password']
-    
-    this.service.isadmin(username,password).then((res:any)=>{
-      if(res.isadmin)
-    {
-      if(this.loginpg.value['remember']){localStorage.setItem('adminremember','true')}
-      
-      var logincred = [username,password]
-      localStorage.setItem('adminuser', JSON.stringify(logincred));
-      this.dialog.open(PopupComponent,{ data: {
-        title:'Success!',
-        type:'success',
-        message:  "Login Successfull."
-        },width:'300px'}).afterClosed()
-        .subscribe((res)=>{
-          this.router.navigate(['/','admin-dashboard']);
-        })
-      
-    }
-    else if(username===''||password===''){
-      this.dialog.open(PopupComponent,{ data: {
-        title:'Alert!',
-        type:'alert',
-        message:  "Please fill all the details."
-        },width:'300px'});
-    }
-    else
-        {
+      else{
+      this.service.isadmin(username,password).then((res:any)=>{
+        if (res.status){
+          if(res.user.isAdmin){
+            sessionStorage.setItem("admintoken",res.token);
             this.dialog.open(PopupComponent,{ data: {
-            title:'Alert!',
-            type:'alert',
-            message:  "Wrong login credentials try again."
-            },width:'300px'});
+              title:'Success!',
+              type:'success',
+              message:  "Login Successfull"
+              },width:'300px'}).afterClosed().subscribe((res)=>{this.router.navigate(['/','admin-dashboard'])})
+          }
+          else{
+            this.dialog.open(PopupComponent,{ data: {
+              title:'Server error!',
+              type:'alert',
+              message:  "You are not Admin"
+              },width:'300px'});
+          }
+          
+          
         }
+      })
+      .catch((err:any)=>{
+        console.log(err.error);
         
-      }).catch((err:any)=>{
         this.dialog.open(PopupComponent,{ data: {
           title:'Server error!',
           type:'alert',
-          message:  "Failed to connect to server"
+          message:  err.error.msg
           },width:'300px'});
-      })
-  }
-  }
+      });
+      
+    }
+    }
+  
+    }

@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-// console.log("db is called")
+console.log("db is called")
 require('dotenv').config()
 
 const db = mysql.createConnection({
@@ -7,7 +7,8 @@ const db = mysql.createConnection({
     user:process.env.DB_USER,
     password:process.env.DB_PASSWORD,
     database:process.env.DB_NAME,
-    insecureAuth : true 
+    
+    // insecureAuth : true 
 })
 
 db.connect((err)=>{

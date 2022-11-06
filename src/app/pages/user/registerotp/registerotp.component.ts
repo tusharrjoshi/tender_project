@@ -56,7 +56,7 @@ export class RegisterotpComponent implements OnInit {
     if(otp){this.service.validateregisterotp(otp).then((res:any)=>{
       if(res.valid){
         this.service.registernewuser(obj).then((res:any)=>{
-          if(res.valid){
+          if(res.userData){
             this.dialog.open(PopupComponent,{ data: {
               title:'Validation Successfull!',
               type:'success',
@@ -73,7 +73,7 @@ export class RegisterotpComponent implements OnInit {
           this.dialog.open(PopupComponent,{ data: {
             title:'Server error!',
             type:'alert',
-            message:  "Failed to connect to server"
+            message:  err.error.msg
             },width:'300px'});
         });
         
@@ -122,7 +122,6 @@ export class RegisterotpComponent implements OnInit {
     
   }
 
+  }
 
   
-
-  }

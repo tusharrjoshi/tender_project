@@ -17,7 +17,6 @@ export class PagesRegisterComponent implements OnInit {
     name: new FormControl(''),
     email: new FormControl('',),
     phone: new FormControl(''),
-    username: new FormControl(''),
     password: new FormControl(''),
     agreetnc: new FormControl('')
   });
@@ -37,7 +36,7 @@ export class PagesRegisterComponent implements OnInit {
   isvalidpassword:boolean=true;
 
   registersubmit(){
-    if(this.registerpg.value['agreetnc'] && this.registerpg.value['name'] &&this.registerpg.value['username'] &&this.registerpg.value['phone'] &&this.registerpg.value['email']&& this.registerpg.value['password']){
+    if(this.registerpg.value['agreetnc'] && this.registerpg.value['name']  &&this.registerpg.value['phone'] &&this.registerpg.value['email']&& this.registerpg.value['password']){
       this.service.sendregisterotp(this.registerpg.value['email'],this.registerpg.value['phone']).then((res:any)=>{
         if(res.valid){
           this.dialog.open(PopupComponent,{ data: {
@@ -47,7 +46,7 @@ export class PagesRegisterComponent implements OnInit {
             },width:'300px'})
             .afterClosed()                                                            //call event after popup close
             .subscribe((res) => {
-              this.router.navigate(['/','registerotp'],{queryParams: {name:this.registerpg.value['name'],email:this.registerpg.value['email'],phone:this.registerpg.value['phone'],username:this.registerpg.value['username'],pass:this.registerpg.value['password']},skipLocationChange: true});
+              this.router.navigate(['/','registerotp'],{queryParams: {name:this.registerpg.value['name'],email:this.registerpg.value['email'],phone:this.registerpg.value['phone'],pass:this.registerpg.value['password']},skipLocationChange: true});
               // call getAllEvents() here
             });
           }
@@ -67,35 +66,19 @@ export class PagesRegisterComponent implements OnInit {
     else if(/\d/.test(name)){this.isvalidname=false}
     else{this.isvalidname=true}
   }
-  validuser(event:any){
-    var username = event.target.value
-    if(/^[0-9a-zA-Z_.-]+$/.test(username) && username.length>=6 ){
-      this.isuser = true
-      this.service.isvaliduser(event.target.value).then((res:any)=>{
-        if(res.valid){this.isvaliduser = true}
-      else(this.isvaliduser=false)
-      }).catch((err:any)=>{
-        this.dialog.open(PopupComponent,{ data: {
-          title:'Server error!',
-          type:'alert',
-          message:  "Failed to connect to server"
-          },width:'300px'});
-      })
-      
-    }
-    else{this.isuser = false}
-    
-  }
+
   validemail(event:any){
     this.service.isvalidemail(event.target.value).then((res:any)=>{
-      if(res.valid){this.isvalidemail = true}
-      else(this.isvalidemail=false)
+      if(res.status){this.isvalidemail = true}
+      
     }).catch((err:any)=>{
-      this.dialog.open(PopupComponent,{ data: {
+      if(err.error.status){this.isvalidemail=false}
+      else{this.dialog.open(PopupComponent,{ data: {
         title:'Server error!',
         type:'alert',
         message:  "Failed to connect to server"
-        },width:'300px'});
+        },width:'300px'});}
+      
     })    
     
   }
@@ -104,15 +87,17 @@ export class PagesRegisterComponent implements OnInit {
     if(regexExp.test(event.target.value)){
       this.isphone = true;
       this.service.isvalidphone(event.target.value).then((res:any)=>{
-        if(res.valid){this.isvalidphone = true}
-        else(this.isvalidphone=false)
+        if(res.status){this.isvalidphone = true}
+        
       }).catch((err:any)=>{
-        this.dialog.open(PopupComponent,{ data: {
+        if(err.error.status){this.isvalidphone=false}
+        else{this.dialog.open(PopupComponent,{ data: {
           title:'Server error!',
           type:'alert',
           message:  "Failed to connect to server"
-          },width:'300px'});
-      })
+          },width:'300px'});}
+        
+      })  
       
     }
     else{

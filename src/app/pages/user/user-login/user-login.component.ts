@@ -16,33 +16,11 @@ export class UserLoginComponent implements OnInit {
   userloginpg = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
-    remember: new FormControl('')
   });
 
   constructor(private router: Router,private  dialog:  MatDialog,public service: ServiceService) { }
 
   ngOnInit(): void {
-    
-    if(localStorage.getItem('remember')){
-      if(localStorage.getItem('user')){
-        var getdata:any = localStorage.getItem('user')
-        var logincred:any = JSON.parse(getdata);
-        this.service.isuser(logincred[0],logincred[1]).then((res:any)=>{
-          if (res.isuser){
-            this.router.navigate(['/','dashboard']);
-          }
-        })
-        .catch((err:any)=>{
-          this.dialog.open(PopupComponent,{ data: {
-            title:'Server error!',
-            type:'alert',
-            message:  "Failed to connect to server"
-            },width:'300px'});
-        });
-        
-      }
-
-    }
     
   }
   username:any;
@@ -51,40 +29,37 @@ export class UserLoginComponent implements OnInit {
   loginsubmit(){
     var username:any = this.userloginpg.value['username'];
     var password:any = this.userloginpg.value['password'];
+    
+    if(username===''||password===''){
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Alert!',
+        type:'alert',
+        message:  "Please fill all the details."
+        },width:'300px'});
+    }
+    else{
     this.service.isuser(username,password).then((res:any)=>{
-      if (res.isuser){
-        if(this.userloginpg.value['remember']){localStorage.setItem('remember','true')}
-        
-        var logincred = [username,password]
-        localStorage.setItem('user', JSON.stringify(logincred));
-        this.router.navigate(['/','dashboard']);
-      }
-      else if(username===''||password===''){
+      if (res.status){
+        sessionStorage.setItem("usertoken", res.token);
         this.dialog.open(PopupComponent,{ data: {
-          title:'Alert!',
-          type:'alert',
-          message:  "Please fill all the details."
-          },width:'300px'});
+          title:'Success!',
+          type:'success',
+          message:  "Login Successfull"
+          },width:'300px'}).afterClosed().subscribe((res)=>{this.router.navigate(['/','dashboard'])})
+        
       }
-      else
-          {
-              this.dialog.open(PopupComponent,{ data: {
-              title:'Alert!',
-              type:'alert',
-              message:  "Wrong login credentials try again."
-              },width:'300px'});
-          }
     })
     .catch((err:any)=>{
+      console.log(err.error);
+      
       this.dialog.open(PopupComponent,{ data: {
         title:'Server error!',
         type:'alert',
-        message:  "Failed to connect to server"
+        message:  err.error.msg
         },width:'300px'});
-    })
-    ;
+    });
     
-    
+  }
   }
 
   }

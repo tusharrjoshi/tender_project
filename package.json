@@ -1,6 +1,7 @@
 {
   "name": "admindashboard",
   "version": "0.0.0",
+  "main": "lib/functions/src/index.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,6 +25,7 @@
     "@fortawesome/angular-fontawesome": "^0.11.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "ajv-dist": "^8.11.0",
     "ngx-countdown": "^14.0.0",
     "ngx-countdown-timer": "^0.2.0",
     "ngx-show-hide-password": "^2.6.4",
