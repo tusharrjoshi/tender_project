@@ -202,13 +202,13 @@ app.get('/gettenderlist', (req, res) => {
 res.send({
       tenderlist: [{tenderid:'D01',tendername:'chair',organization:'cba',uploaddate:'01-01-2020',enddate:'02-02-2020',notify:true},
                   {tenderid:'D02',tendername:'chair',organization:'vyas',uploaddate:'01-01-2020',enddate:'02-02-2020',notify:false},
-                  {tenderid:'D01',tendername:'chair',organization:'gits',uploaddate:'01-03-2020',enddate:'03-03-2020',notify:true},
+                  {tenderid:'D01',tendername:'chair',organization:'net',uploaddate:'01-03-2020',enddate:'03-03-2020',notify:true},
                   {tenderid:'D01',tendername:'chair',organization:'cba',uploaddate:'01-01-2020',enddate:'02-02-2020',notify:true},
                   {tenderid:'D02',tendername:'chair',organization:'vyas',uploaddate:'01-01-2020',enddate:'02-02-2020',notify:false},
-                  {tenderid:'D01',tendername:'chair',organization:'gits',uploaddate:'01-03-2020',enddate:'03-03-2020',notify:true},
+                  {tenderid:'D01',tendername:'chair',organization:'net',uploaddate:'01-03-2020',enddate:'03-03-2020',notify:true},
                   {tenderid:'D01',tendername:'chair',organization:'cba',uploaddate:'01-01-2020',enddate:'02-02-2020',notify:true},
                   {tenderid:'D02',tendername:'chair',organization:'vyas',uploaddate:'01-01-2020',enddate:'02-02-2020',notify:false},
-                  {tenderid:'D01',tendername:'chair',organization:'gits',uploaddate:'01-03-2020',enddate:'03-03-2020',notify:true},]
+                  {tenderid:'D01',tendername:'chair',organization:'net',uploaddate:'01-03-2020',enddate:'03-03-2020',notify:true},]
   })
 res.end()
 })
