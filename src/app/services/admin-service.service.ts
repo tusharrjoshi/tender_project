@@ -30,4 +30,8 @@ export class AdminServiceService {
     return this.http.get(`http://localhost:3000/gettenderlist?username=${username}`).toPromise();
   }
 
+  gettenderbidlist(username:any,tenderid:any){
+    return this.http.get(`http://localhost:3000/gettenderbidlist?username=${username}`).toPromise();
+  }
+
 }

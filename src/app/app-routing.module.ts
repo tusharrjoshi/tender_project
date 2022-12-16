@@ -41,6 +41,12 @@ import { NewpasswordComponent } from './pages/user/newpassword/newpassword.compo
 import { RegisterotpComponent } from './pages/user/registerotp/registerotp.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AdminAddtenderComponent } from './pages/admin/admin-addtender/admin-addtender.component';
+import { AdminTenderinfoComponent } from './pages/admin/admin-tenderinfo/admin-tenderinfo.component';
+import { AdminTenderbidComponent } from './pages/admin/admin-tenderbid/admin-tenderbid.component';
+import { AdminTenderbidinfoComponent } from './pages/admin/admin-tenderbidinfo/admin-tenderbidinfo.component';
+import { UserTenderapplyComponent } from './pages/user/user-tenderapply/user-tenderapply.component';
+import { UserTenderinfoComponent } from './pages/user/user-tenderinfo/user-tenderinfo.component';
+import { UserTenderbidComponent } from './pages/user/user-tenderbid/user-tenderbid.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'user-login', pathMatch: 'full' },
@@ -84,6 +90,13 @@ const routes: Routes = [
 
   { path: 'admin-dashboard',component: AdminDashboardComponent,canActivate : [AdminGuardService]},
   { path: 'admin-addtender',component: AdminAddtenderComponent,canActivate : [AdminGuardService]},
+  { path: 'admin-tenderinfo',component: AdminTenderinfoComponent,canActivate : [AdminGuardService]},
+  { path: 'admin-tenderbid',component: AdminTenderbidComponent,canActivate : [AdminGuardService]},
+  { path: 'admin-tenderbidinfo',component: AdminTenderbidinfoComponent,canActivate : [AdminGuardService]},
+
+  { path: 'user-tenderapply',component: UserTenderapplyComponent,canActivate : [AuthGuardService]},
+  { path: 'user-tenderinfo',component: UserTenderinfoComponent,canActivate : [AuthGuardService]},
+  { path: 'user-tenderbid',component: UserTenderbidComponent,canActivate : [AuthGuardService]},
 
   { path: '**', component: PagesError404Component }
 ];

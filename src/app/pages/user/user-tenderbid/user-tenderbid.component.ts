@@ -5,17 +5,18 @@ import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-user-tenderbid',
+  templateUrl: './user-tenderbid.component.html',
+  styleUrls: ['./user-tenderbid.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class UserTenderbidComponent implements OnInit {
 
   constructor(private elementRef: ElementRef,private adminservice:AdminServiceService,private  dialog:  MatDialog,private router:Router) { }
 
   sno:number=1;
   
-  tenderlist:any ;
+  tenderbidlist:any ;
+
 
   ngOnInit(): void {
     var getdata:any = localStorage.getItem('adminuser')
@@ -24,8 +25,8 @@ export class DashboardComponent implements OnInit {
     
     
     this.adminservice.gettenderlist(cred[0]).then((res:any)=>{
-      this.tenderlist = res.tenderlist;
-      console.log(this.tenderlist);
+      this.tenderbidlist = res.tenderlist;
+
       
     }).catch((err:any)=>{
 

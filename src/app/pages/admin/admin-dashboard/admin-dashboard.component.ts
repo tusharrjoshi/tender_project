@@ -2,6 +2,7 @@ import {Component, OnInit, ElementRef  } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,7 +11,7 @@ import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef,private adminservice:AdminServiceService,private  dialog:  MatDialog) { }
+  constructor(private elementRef: ElementRef,private adminservice:AdminServiceService,private  dialog:  MatDialog,private router:Router) { }
   sno:number=1;
   
   tenderlist:any ;
@@ -20,7 +21,7 @@ export class AdminDashboardComponent implements OnInit {
     var cred:any = JSON.parse(getdata);
     console.log("befr api called");
     
-
+    
     this.adminservice.gettenderlist(cred[0]).then((res:any)=>{
       this.tenderlist = res.tenderlist;
       console.log(this.tenderlist);
@@ -39,8 +40,6 @@ export class AdminDashboardComponent implements OnInit {
     s.src = "../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(s);
   }
-
-  
 
 }
 

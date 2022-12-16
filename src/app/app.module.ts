@@ -62,6 +62,12 @@ import { AdminSidebarComponent } from './layouts/admin-sidebar/admin-sidebar.com
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AdminServiceService } from './services/admin-service.service';
 import { AdminAddtenderComponent } from './pages/admin/admin-addtender/admin-addtender.component';
+import { AdminTenderinfoComponent } from './pages/admin/admin-tenderinfo/admin-tenderinfo.component';
+import { AdminTenderbidComponent } from './pages/admin/admin-tenderbid/admin-tenderbid.component';
+import { AdminTenderbidinfoComponent } from './pages/admin/admin-tenderbidinfo/admin-tenderbidinfo.component';
+import { UserTenderapplyComponent } from './pages/user/user-tenderapply/user-tenderapply.component';
+import { UserTenderinfoComponent } from './pages/user/user-tenderinfo/user-tenderinfo.component';
+import { UserTenderbidComponent } from './pages/user/user-tenderbid/user-tenderbid.component';
 
 
 @NgModule({
@@ -111,6 +117,12 @@ import { AdminAddtenderComponent } from './pages/admin/admin-addtender/admin-add
     AdminSidebarComponent,
     AdminDashboardComponent,
     AdminAddtenderComponent,
+    AdminTenderinfoComponent,
+    AdminTenderbidComponent,
+    AdminTenderbidinfoComponent,
+    UserTenderapplyComponent,
+    UserTenderinfoComponent,
+    UserTenderbidComponent,
 
   ],
   entryComponents: [PopupComponent],
