@@ -67,7 +67,6 @@ import { AdminTenderbidComponent } from './pages/admin/admin-tenderbid/admin-ten
 import { AdminTenderbidinfoComponent } from './pages/admin/admin-tenderbidinfo/admin-tenderbidinfo.component';
 import { UserTenderapplyComponent } from './pages/user/user-tenderapply/user-tenderapply.component';
 import { UserTenderinfoComponent } from './pages/user/user-tenderinfo/user-tenderinfo.component';
-import { UserTenderbidComponent } from './pages/user/user-tenderbid/user-tenderbid.component';
 
 
 @NgModule({
@@ -122,7 +121,6 @@ import { UserTenderbidComponent } from './pages/user/user-tenderbid/user-tenderb
     AdminTenderbidinfoComponent,
     UserTenderapplyComponent,
     UserTenderinfoComponent,
-    UserTenderbidComponent,
 
   ],
   entryComponents: [PopupComponent],

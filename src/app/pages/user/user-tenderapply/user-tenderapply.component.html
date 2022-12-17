@@ -5,7 +5,8 @@
           <ol class="breadcrumb">
              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
              <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-             <li class="breadcrumb-item active">Addtender</li>
+             <li class="breadcrumb-item"><a routerLink="/user-tenderinfo">Tender</a></li>
+             <li class="breadcrumb-item active">Apply</li>
           </ol>
        </nav>
     </div>
@@ -14,238 +15,44 @@
            <div class="col-xxl-4 col-xl-12">
               <div class="card">
                  <div class="card-body">
-                    <h5 class="card-title">New Tender</h5>
-                    <form>
+                    <h5 class="card-title">Bid</h5>
+                    <form [formGroup]="applytenderpg" (ngSubmit)="apply()" novalidate>
                        <div class="row mb-3">
-                          <label for="inputText" class="col-sm-2 col-form-label">Title</label>
-                          <div class="col-sm-10"> <input type="text" class="form-control"></div>
+                          <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                          <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applyname"></div>
                        </div>
                        <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Opening Date</label>
+                        <label for="inputDate" class="col-sm-2 col-form-label">Issued Date</label>
+                        <div class="col-sm-10"> <input type="date" class="form-control" formControlName="applydate"></div>
+                     </div>
+                     <!-- <div class="row mb-3">
+                        <label for="inputDate" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10"> <input type="date" class="form-control"></div>
+                     </div> -->
+                     <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
+                        <div class="col-sm-10"> <input type="number" class="form-control" formControlName="applyamount"></div>
                      </div>
                      <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Closing Date</label>
-                        <div class="col-sm-10"> <input type="date" class="form-control"></div>
+                        <label for="inputText" class="col-sm-2 col-form-label">Phone number</label>
+                        <div class="col-sm-10"> <input type="number" class="form-control" formControlName="applyphone"></div>
                      </div>
                      <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Type</label>
-                        <div class="col-sm-10">
-                           <select class="form-select" aria-label="Default select example">
-                              <option selected></option>
-                              <option value="1">Open Tender</option>
-                              <option value="2">Restricted Tender</option>
-                              <option value="3">Single Source Restricted tender</option>
-                           </select>
-                        </div>
+                        <label for="inputText" class="col-sm-2 col-form-label">GST no</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applygst"></div>
                      </div>
                      <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Supplier</label>
-                        <div class="col-sm-10">
-                           <select class="form-select" aria-label="Default select example">
-                              <option selected></option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                           </select>
-                        </div>
+                        <label for="inputText" class="col-sm-2 col-form-label">Account number</label>
+                        <div class="col-sm-10"> <input type="number" class="form-control" formControlName="applyaccount"></div>
                      </div>
-                     <div class="card">
-                        <div class="card-body">
-                           <h5 class="card-title">Default Tabs</h5>
-                           <ul class="nav nav-tabs" id="myTab" role="tablist">
-                              <li class="nav-item" role="presentation"> <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Product</button></li>
-                              <li class="nav-item" role="presentation"> <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Supplier Bid</button></li>
-                              <li class="nav-item" role="presentation"> <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Approval and Comment</button></li>
-                           </ul>
-                           <div class="tab-content pt-2" id="myTabContent">
-                              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                 <table class="table table-sm">
-                                    <thead>
-                                       <tr>
-                                          <th scope="col">S.no</th>
-                                          <th scope="col">Product</th>
-                                          <th scope="col">Description</th>
-                                          <th scope="col">Product Qnt.</th>
-                                          <th scope="col">Unit</th>
-                                          <th scope="col">Boq Attachment</th>
-                                          <th scope="col">Other Attachment</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                          <th scope="row">1</th>
-                                          <td>Brandon Jacob</td>
-                                          <td>Designer</td>
-                                          <td>28</td>
-                                          <td>2016-05-25</td>
-                                          <td>28</td>
-                                          <td>28</td>
-                                       </tr>
-                                       <tr>
-                                          <th scope="row"></th>
-                                          <td>
-                                             <button type="button" class="btn btn-primary btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModal">Add a lines</button>
-                                             <div class="modal fade" id="largeModal" tabindex="-1">
-                                                <div class="modal-dialog modal-lg">
-                                                   <div class="modal-content">
-                                                      <div class="modal-header">
-                                                         <h5 class="modal-title">Create tender line</h5>
-                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                         <form>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Product</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Description</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Product Quantity</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Unit of Measure</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputNumber" class="col-sm-2 col-form-label">Boq Attachment</label>
-                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputNumber" class="col-sm-2 col-form-label">Other Attachment</label>
-                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
-                                                            </div>
-                                                         </form>
-                                                      </div>
-                                                      <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button></div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                       </tr>
-                                       
-                                    </tbody>
-                                 </table>
-                              </div>
-
-                              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                 <table class="table table-sm">
-                                    <thead>
-                                       <tr>
-                                          <th scope="col">S.no</th>
-                                          <th scope="col">Name</th>
-                                          <th scope="col">Supplier</th>
-                                          <th scope="col">Product</th> 
-                                          <th scope="col">Total Score</th>
-                                          <th scope="col">Bid Result</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                          <td>1</td>
-                                          <td>Shambhu</td>
-                                          <td>Dealers</td>
-                                          <td>Chair</td>
-                                          <td>1</td>
-                                          <td> <span class="badge border-success border-1 text-success">Approved</span></td>
-                                       </tr>
-                                    </tbody>
-                                    </table>
-                              </div>
-                              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.</div>
-                           </div>
-                        </div>
+                     <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Bid Details</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control" formControlName="biddetails"></div>
+                     </div>
+                     <div class="text-center">
+                        <button type="submit" class="btn btn-primary rounded-pill " >Make Payment</button>
                      </div>
 
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-
-                       <!-- <div class="row mb-3">
-                          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                          <div class="col-sm-10"> <input type="email" class="form-control"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                          <div class="col-sm-10"> <input type="password" class="form-control"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
-                          <div class="col-sm-10"> <input type="number" class="form-control"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                          <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                          <div class="col-sm-10"> <input type="date" class="form-control"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-                          <div class="col-sm-10"> <input type="time" class="form-control"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
-                          <div class="col-sm-10"> <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color"></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-                          <div class="col-sm-10"><textarea class="form-control" style="height: 100px"></textarea></div>
-                       </div>
-                       <fieldset class="row mb-3">
-                          <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                          <div class="col-sm-10">
-                             <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> <label class="form-check-label" for="gridRadios1"> First radio </label></div>
-                             <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"> <label class="form-check-label" for="gridRadios2"> Second radio </label></div>
-                             <div class="form-check disabled"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled> <label class="form-check-label" for="gridRadios3"> Third disabled radio </label></div>
-                          </div>
-                       </fieldset>
-                       <div class="row mb-3">
-                          <legend class="col-form-label col-sm-2 pt-0">Checkboxes</legend>
-                          <div class="col-sm-10">
-                             <div class="form-check"> <input class="form-check-input" type="checkbox" id="gridCheck1"> <label class="form-check-label" for="gridCheck1"> Example checkbox </label></div>
-                             <div class="form-check"> <input class="form-check-input" type="checkbox" id="gridCheck2" checked> <label class="form-check-label" for="gridCheck2"> Example checkbox 2 </label></div>
-                          </div>
-                       </div>
-                       <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label">Disabled</label>
-                          <div class="col-sm-10"> <input type="text" class="form-control" value="Read only / Disabled" disabled></div>
-                       </div>
-                       <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label">Select</label>
-                          <div class="col-sm-10">
-                             <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                             </select>
-                          </div>
-                       </div>
-                       <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label">Multi Select</label>
-                          <div class="col-sm-10">
-                             <select class="form-select" multiple aria-label="multiple select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                             </select>
-                          </div>
-                       </div>
-                       <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label">Submit Button</label>
-                          <div class="col-sm-10"> <button type="submit" class="btn btn-primary">Submit Form</button></div>
-                       </div> -->
                     </form>
                  </div>
               </div>

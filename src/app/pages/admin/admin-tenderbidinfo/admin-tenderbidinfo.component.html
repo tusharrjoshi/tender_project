@@ -1,144 +1,75 @@
 <main id="main" class="main">
-    <div class="pagetitle">
-       <h1>Dashboard</h1>
-       <nav>
-          <ol class="breadcrumb">
-             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-             <li class="breadcrumb-item"><a routerLink="/admin-dashboard">Dashboard</a></li>
-             <li class="breadcrumb-item active">Bidder info</li>
-          </ol>
-       </nav>
-    </div>
-    <section class="section">
-        <div class="row">
-           <div class="col-xxl-4 col-xl-12">
-              <div class="card">
-                 <div class="card-body">
-                    <h5 class="card-title">New Tender</h5>
-                    <form>
-                       <div class="row mb-3">
-                          <label for="inputText" class="col-sm-2 col-form-label">Title</label>
-                          <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                       </div>
-                       <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Opening Date</label>
-                        <div class="col-sm-10"> <input type="date" class="form-control"></div>
-                     </div>
-                     <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Closing Date</label>
-                        <div class="col-sm-10"> <input type="date" class="form-control"></div>
-                     </div>
-                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Type</label>
-                        <div class="col-sm-10">
-                           <select class="form-select" aria-label="Default select example">
-                              <option selected></option>
-                              <option value="1">Open Tender</option>
-                              <option value="2">Restricted Tender</option>
-                              <option value="3">Single Source Restricted tender</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Supplier</label>
-                        <div class="col-sm-10">
-                           <select class="form-select" aria-label="Default select example">
-                              <option selected></option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="card">
-                        <div class="card-body">
-                           <h5 class="card-title">Default Tabs</h5>
-                           <ul class="nav nav-tabs" id="myTab" role="tablist">
-                              <li class="nav-item" role="presentation"> <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Product</button></li>
-                           </ul>
-                           <div class="tab-content pt-2" id="myTabContent">
-                              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                 <table class="table table-sm">
-                                    <thead>
-                                       <tr>
-                                          <th scope="col">S.no</th>
-                                          <th scope="col">Product</th>
-                                          <th scope="col">Description</th>
-                                          <th scope="col">Product Qnt.</th>
-                                          <th scope="col">Unit</th>
-                                          <th scope="col">Boq Attachment</th>
-                                          <th scope="col">Other Attachment</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                          <th scope="row">1</th>
-                                          <td>Brandon Jacob</td>
-                                          <td>Designer</td>
-                                          <td>28</td>
-                                          <td>2016-05-25</td>
-                                          <td>28</td>
-                                          <td>28</td>
-                                       </tr>
-                                       <tr>
-                                          <th scope="row"></th>
-                                          <td>
-                                             <button type="button" class="btn btn-primary btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModal">Add a lines</button>
-                                             <div class="modal fade" id="largeModal" tabindex="-1">
-                                                <div class="modal-dialog modal-lg">
-                                                   <div class="modal-content">
-                                                      <div class="modal-header">
-                                                         <h5 class="modal-title">Create tender line</h5>
-                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                         <form>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Product</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Description</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Product Quantity</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Unit of Measure</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputNumber" class="col-sm-2 col-form-label">Boq Attachment</label>
-                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                               <label for="inputNumber" class="col-sm-2 col-form-label">Other Attachment</label>
-                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
-                                                            </div>
-                                                         </form>
-                                                      </div>
-                                                      <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button></div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                       </tr>
-                                       
-                                    </tbody>
-                                 </table>
+   <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Apply</li>
+         </ol>
+      </nav>
+   </div>
+   <section class="section">
+       <div class="row">
+          <div class="col-xxl-4 col-xl-12">
+             <div class="card">
+                <div class="card-body">
+                   <h5 class="card-title">Bid</h5>
+                   <form [formGroup]="applytenderpg"  novalidate>
+                      <div class="row mb-3">
+                         <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                         <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applyname"></div>
+                      </div>
+                      <div class="row mb-3">
+                       <label for="inputDate" class="col-sm-2 col-form-label">Issued Date</label>
+                       <div class="col-sm-10"> <input type="date" class="form-control" formControlName="applydate"></div>
+                    </div>
+                    <!-- <div class="row mb-3">
+                       <label for="inputDate" class="col-sm-2 col-form-label"></label>
+                       <div class="col-sm-10"> <input type="date" class="form-control"></div>
+                    </div> -->
+                    <div class="row mb-3">
+                       <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
+                       <div class="col-sm-10"> <input type="number" class="form-control" formControlName="applyamount"></div>
+                    </div>
+                    <div class="row mb-3">
+                       <label for="inputText" class="col-sm-2 col-form-label">Phone number</label>
+                       <div class="col-sm-10"> <input type="number" class="form-control" formControlName="applyphone"></div>
+                    </div>
+                    <div class="row mb-3">
+                       <label for="inputText" class="col-sm-2 col-form-label">GST no</label>
+                       <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applygst"></div>
+                    </div>
+                    <div class="row mb-3">
+                       <label for="inputText" class="col-sm-2 col-form-label">Account number</label>
+                       <div class="col-sm-10"> <input type="number" class="form-control" formControlName="applyaccount"></div>
+                    </div>
+                    <div class="row mb-3">
+                       <label for="inputText" class="col-sm-2 col-form-label">Bid Details</label>
+                       <div class="col-sm-10"> <input type="text" class="form-control" formControlName="biddetails"></div>
+                    </div>
+                    <div class="text-center">
+                       
+                       <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#verticalycentered"> Approve </button>
+                        <div class="modal fade" id="verticalycentered" tabindex="-1">
+                           <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h3 class="modal-title">Do you want to approve bid?</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                 </div>
+                                 <div class="modal-body">  The Purchaser reserves the right to increase or decrease the quantity to be
+                                   ordered up to 25 percent of bid quantity at the time of placement of contract. The purchaser
+                                   also reserves the right to increase the ordered quantity by up to 25% of the contracted
+                                   quantity during the currency of the contract at the contracted rates. Bidders are bound to
+                                   accept the orders accordingly.</div>
+                                 <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button> <button type="button" (click)="approve()" class="btn btn-primary">Yes</button></div>
                               </div>
-               
                            </div>
                         </div>
-                     </div>
-                    </form>
+                    </div>
+
+                   </form>
                 </div>
              </div>
           </div>
@@ -146,4 +77,3 @@
    </section>
    
 </main>
-

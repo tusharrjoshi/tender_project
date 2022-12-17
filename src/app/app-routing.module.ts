@@ -46,7 +46,6 @@ import { AdminTenderbidComponent } from './pages/admin/admin-tenderbid/admin-ten
 import { AdminTenderbidinfoComponent } from './pages/admin/admin-tenderbidinfo/admin-tenderbidinfo.component';
 import { UserTenderapplyComponent } from './pages/user/user-tenderapply/user-tenderapply.component';
 import { UserTenderinfoComponent } from './pages/user/user-tenderinfo/user-tenderinfo.component';
-import { UserTenderbidComponent } from './pages/user/user-tenderbid/user-tenderbid.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'user-login', pathMatch: 'full' },
@@ -96,7 +95,6 @@ const routes: Routes = [
 
   { path: 'user-tenderapply',component: UserTenderapplyComponent,canActivate : [AuthGuardService]},
   { path: 'user-tenderinfo',component: UserTenderinfoComponent,canActivate : [AuthGuardService]},
-  { path: 'user-tenderbid',component: UserTenderbidComponent,canActivate : [AuthGuardService]},
 
   { path: '**', component: PagesError404Component }
 ];

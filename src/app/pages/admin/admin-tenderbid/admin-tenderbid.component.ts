@@ -18,6 +18,16 @@ export class AdminTenderbidComponent implements OnInit {
   tenderid :any;
   tenderbidlist:any
   bidid:any;
+
+  filterpg = new FormGroup({
+    one: new FormControl(''),
+    two: new FormControl(''),
+    three: new FormControl(''),
+    four: new FormControl(''),
+    five: new FormControl(''),
+   
+  });
+
   ngOnInit(): void {
     this.route.queryParams
     .subscribe((params:any) => {
@@ -38,6 +48,12 @@ export class AdminTenderbidComponent implements OnInit {
         message:  "Failed to connect to server"
         },width:'300px'})});
   }
+
+  filter(){
+    
+  }
+
+  
   
 
 }

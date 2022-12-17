@@ -15,34 +15,34 @@
               <div class="card">
                  <div class="card-body">
                     <h5 class="card-title">New Tender</h5>
-                    <form>
+                    <form [formGroup]="addtenderpg" (ngSubmit)="addtender()" class="row g-3 needs-validation" novalidate >
                        <div class="row mb-3">
                           <label for="inputText" class="col-sm-2 col-form-label">Title</label>
-                          <div class="col-sm-10"> <input type="text" class="form-control"></div>
+                          <div class="col-sm-10"> <input type="text" class="form-control"  id="title" required formControlName="tendertitle"></div>
                        </div>
                        <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Opening Date</label>
-                        <div class="col-sm-10"> <input type="date" class="form-control"></div>
+                        <label for="inputDate" class="col-sm-2 col-form-label" >Opening Date</label>
+                        <div class="col-sm-10"> <input type="date" class="form-control" id="openingdate" required formControlName="openingdate"></div>
                      </div>
                      <div class="row mb-3">
                         <label for="inputDate" class="col-sm-2 col-form-label">Closing Date</label>
-                        <div class="col-sm-10"> <input type="date" class="form-control"></div>
+                        <div class="col-sm-10"> <input type="date" class="form-control" id="closingdate" required formControlName="closingdate"></div>
                      </div>
                      <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Type</label>
                         <div class="col-sm-10">
-                           <select class="form-select" aria-label="Default select example">
+                           <select class="form-select" aria-label="Default select example" id="tendertype" required formControlName="tendertype">
                               <option selected></option>
-                              <option value="1">Open Tender</option>
-                              <option value="2">Restricted Tender</option>
-                              <option value="3">Single Source Restricted tender</option>
+                              <option value="Open Tender">Open Tender</option>
+                              <option value="Restricted Tender">Restricted Tender</option>
+                              <option value="Single Source Restricted tender">Single Source Restricted tender</option>
                            </select>
                         </div>
                      </div>
                      <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Supplier</label>
                         <div class="col-sm-10">
-                           <select class="form-select" aria-label="Default select example">
+                           <select class="form-select" aria-label="Default select example" id="supplier" required formControlName="supplier">
                               <option selected></option>
                               <option value="1">One</option>
                               <option value="2">Two</option>
@@ -73,19 +73,20 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <tr>
-                                          <th scope="row">1</th>
-                                          <td>Brandon Jacob</td>
-                                          <td>Designer</td>
-                                          <td>28</td>
-                                          <td>2016-05-25</td>
-                                          <td>28</td>
-                                          <td>28</td>
+                                       <tr *ngFor="let product of productlist ; let i=index">
+                                          <th scope="row">{{i+1}}</th>
+                                          <td>{{product.productname}}</td>
+                                          <td>{{product.productdescription}}</td>
+                                          <td>{{product.productquantity}}</td>
+                                          <td>{{product.productunits}}</td>
+                                          <td>{{product.attachements}}</td>
+                                          <td>{{product.otherattachements}}</td>
+                                          
                                        </tr>
                                        <tr>
                                           <th scope="row"></th>
                                           <td>
-                                             <button type="button" class="btn btn-primary btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModal">Add a lines</button>
+                                             <button type="button" class="btn btn-primary btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModal">Add a line</button>
                                              <div class="modal fade" id="largeModal" tabindex="-1">
                                                 <div class="modal-dialog modal-lg">
                                                    <div class="modal-content">
@@ -94,34 +95,34 @@
                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                       </div>
                                                       <div class="modal-body">
-                                                         <form>
+                                                         <form [formGroup]="addtendermodal"  class="row g-3 needs-validation" novalidate >
                                                             <div class="row mb-3">
                                                                <label for="inputText" class="col-sm-2 col-form-label">Product</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
+                                                               <div class="col-sm-10"> <input type="text" class="form-control" id="product" required formControlName="productname"></div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                <label for="inputText" class="col-sm-2 col-form-label">Description</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
+                                                               <div class="col-sm-10"> <input type="text" class="form-control" id="description" required formControlName="productdescription"></div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                <label for="inputText" class="col-sm-2 col-form-label">Product Quantity</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
+                                                               <div class="col-sm-10"> <input type="text" class="form-control" id="quantity" required formControlName="productquantity"></div>
                                                             </div>
                                                             <div class="row mb-3">
-                                                               <label for="inputText" class="col-sm-2 col-form-label">Unit of Measure</label>
-                                                               <div class="col-sm-10"> <input type="text" class="form-control"></div>
+                                                               <label for="inputText" class="col-sm-2 col-form-label">Units</label>
+                                                               <div class="col-sm-10"> <input type="text" class="form-control" id="units" required formControlName="productunits"></div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                <label for="inputNumber" class="col-sm-2 col-form-label">Boq Attachment</label>
-                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
+                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"  required formControlName="attachements"></div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                <label for="inputNumber" class="col-sm-2 col-form-label">Other Attachment</label>
-                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile"></div>
+                                                               <div class="col-sm-10"> <input class="form-control" type="file" id="formFile" required formControlName="otherattachements"></div>
                                                             </div>
                                                          </form>
                                                       </div>
-                                                      <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button></div>
+                                                      <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addline()">Add line</button></div>
                                                    </div>
                                                 </div>
                                              </div>
@@ -137,7 +138,7 @@
                                  </table>
                               </div>
 
-                              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                              <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                  <table class="table table-sm">
                                     <thead>
                                        <tr>
@@ -160,8 +161,9 @@
                                        </tr>
                                     </tbody>
                                     </table>
-                              </div>
-                              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.</div>
+                              </div> -->
+                              
+                              <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.</div> -->
                            </div>
                         </div>
                      </div>
@@ -246,6 +248,7 @@
                           <label class="col-sm-2 col-form-label">Submit Button</label>
                           <div class="col-sm-10"> <button type="submit" class="btn btn-primary">Submit Form</button></div>
                        </div> -->
+                       <button type="submit" class="btn btn-primary">Addtender</button>
                     </form>
                  </div>
               </div>
