@@ -88,7 +88,7 @@ export class AdminAddtenderComponent implements OnInit {
   }
 
   addline(){
-    this.productlist.push({productname: this.addtendermodal.value['productname'],productdescription: this.addtendermodal.value['productdescription'],productquantity: this.addtendermodal.value['productquantity'],productunits: this.addtendermodal.value['productunits'],attachements: this.addtendermodal.value['attachements'],otherattachements: this.addtendermodal.value['otherattachements'],})
+    this.productlist.push({productname: this.addtendermodal.value['productname'],productdescription: this.addtendermodal.value['productdescription'],productquantity: this.addtendermodal.value['productquantity'],productunits: this.addtendermodal.value['productunits']})
     this.addtendermodal.reset({
       'productname': '',
       'productdescription': '',

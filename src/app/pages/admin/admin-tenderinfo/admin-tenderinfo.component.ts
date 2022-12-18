@@ -13,13 +13,13 @@ import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 export class AdminTenderinfoComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
-    private adminservice: AdminServiceService,
+    private service: AdminServiceService,
     private dialog: MatDialog,
     private route: ActivatedRoute
   ) {}
 
   tenderid: any;
-  newtender: any;
+  tender: any;
   productlist: any[] = [];
 
     tenderinfopg = new FormGroup({
@@ -29,20 +29,41 @@ export class AdminTenderinfoComponent implements OnInit {
     tendertype: new FormControl(''),
     supplier: new FormControl(''),
   });
-
+ 
+  
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params: any) => {
-      this.tenderid = params.tenderid;
-    });
-    var getdata: any = localStorage.getItem('adminuser');
-    var cred: any = JSON.parse(getdata);
-    console.log('befr api called');
-    console.warn(this.tenderid);
+    this.route.queryParams
+      .subscribe((params:any) => {
+        this.tenderid  = params.tenderid;
+      })
+    
+    this.service.gettenderbyid(this.tenderid).then((res)=>{
+      console.warn(res);
+      
+      this.tender = res.data[0];
+      console.log(this.tender);
 
-    var s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = '../assets/js/main.js';
-    this.elementRef.nativeElement.appendChild(s);
+      
+      
+      this.tenderinfopg.controls['tendertitle'].setValue(this.tender.tenderTitle);
+      this.tenderinfopg.controls['openingdate'].setValue(this.tender.openigDate);
+      this.tenderinfopg.controls['closingdate'].setValue(this.tender.closingDate);
+      this.tenderinfopg.controls['tendertype'].setValue(this.tender.tenderType);
+      this.tenderinfopg.controls['supplier'].setValue(this.tender.supplier);
+      this.productlist = JSON.parse(this.tender.product)
+      
+      
+      
+      
+    }).catch((err:any)=>{
+      console.log(3333333);
+      
+
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'})});
     
   }
 }

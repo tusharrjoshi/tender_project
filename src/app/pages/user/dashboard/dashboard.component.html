@@ -40,7 +40,7 @@
                                  <td>{{tender.closingDate}}</td>
                                  <td>{{tender.supplier}}</td>
                                 <td>
-                                 <button style="margin-right:10px ;" type="button"  class="btn btn-outline-info btn-sm rounded-pill"  [routerLink]="['/','user-tenderinfo']" [queryParams]="{ tenderid: tender.tenderid}">view</button>
+                                 <button style="margin-right:10px ;" type="button"  class="btn btn-outline-info btn-sm rounded-pill"  [routerLink]="['/','user-tenderinfo']" [queryParams]="{ tenderid: tender.tenderId}">view</button>
                                  <!-- <button *ngIf="tender.notify" type="button"  class="btn btn-warning btn-sm" [routerLink]="['/','user-tenderbid']" [queryParams]="{ tenderid: tender.tenderid}"><i class="bi bi-bell -fill"></i></button>                                   -->
                               </td>
                              </tr>

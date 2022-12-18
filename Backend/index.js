@@ -204,6 +204,22 @@ app.post('/addTendor' ,(req,res)=>{
   })
 })
 
+app.post('/bidstatusbyid' ,(req,res)=>{
+
+  let {tenderId }= req.body
+  console.log(tenderId);
+  let q = `UPDATE tenders SET bid = 1 WHERE tenderId = ${tenderId}`;
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(200).send({status:false, data:err})
+
+    }else{
+      res.status(401).send({status:true,data:result})
+    }
+  })
+})
+
+
 app.post('/getTenders',(req,res)=>{
   let q = `SELECT * FROM tenders WHERE userID = ${req.body.userID}`
   db.query(q,(err,result)=>{
@@ -214,6 +230,18 @@ app.post('/getTenders',(req,res)=>{
     }
   })
 })
+
+app.post('/getTendersbyid',(req,res)=>{
+  let q = `SELECT * FROM tenders WHERE tenderId = ${req.body.tenderId}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
 app.get('/getAllTenders',(req,res)=>{
   let q = `SELECT * FROM tenders`
   db.query(q,(err,result)=>{
@@ -224,6 +252,88 @@ app.get('/getAllTenders',(req,res)=>{
     }
   })
 })
+
+app.post('/getbids',(req,res)=>{
+  let q = `SELECT * FROM bids WHERE tenderId = ${req.body.tenderId}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/getbid',(req,res)=>{
+  let q = `SELECT * FROM bids WHERE bidId = ${req.body.bidId}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/bid' ,(req,res)=>{
+
+  let { tenderId , bidname,biddate,bidamount,bidphone,bidgst,bidaccount,biddetails,userId }= req.body
+  console.log(req.body)
+  let q = `INSERT INTO bids (tenderID,bidname, biddate, bidamount	, bidphone, bidgst, bidaccount	,biddetails,userID) VALUES ('${tenderId}' , '${bidname}','${biddate}','${bidamount}','${bidphone}','${bidgst}','${bidaccount}','${biddetails}',${userId})`;
+  db.query(q,(err,result)=>{
+    if(err){
+      console.log(err)
+      res.status(200).send({status:false, data:err})
+
+    }else{
+      console.log(44)
+      res.status(401).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/bidapprove' ,(req,res)=>{
+
+  let {bidId }= req.body
+  
+  let q = `UPDATE bids SET approved = 1 WHERE bidId = ${bidId}`;
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(200).send({status:false, data:err})
+
+    }else{
+      res.status(401).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/bidunapprove' ,(req,res)=>{
+
+  let {bidId }= req.body
+  
+  let q = `UPDATE bids SET approved = 0 WHERE bidId = ${bidId}`;
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(200).send({status:false, data:err})
+
+    }else{
+      res.status(401).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/removetender',(req,res)=>{
+  let q = `DELETE FROM tenders WHERE tenderId =  ${req.body.tenderId}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
+
 
 ////////////////////////////////////////////////////////temp api
 app.get("/", (req, res) => {

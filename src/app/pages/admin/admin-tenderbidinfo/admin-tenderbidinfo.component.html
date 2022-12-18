@@ -4,8 +4,8 @@
       <nav>
          <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Apply</li>
+            <li class="breadcrumb-item"><a routerLink="/admin-dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Approve</li>
          </ol>
       </nav>
    </div>
@@ -16,6 +16,14 @@
                 <div class="card-body">
                    <h5 class="card-title">Bid</h5>
                    <form [formGroup]="applytenderpg"  novalidate>
+                     <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">BidID</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control" formControlName="bidId"></div>
+                     </div>
+                     <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">User ID</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applyID"></div>
+                     </div>
                       <div class="row mb-3">
                          <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                          <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applyname"></div>
@@ -63,7 +71,7 @@
                                    also reserves the right to increase the ordered quantity by up to 25% of the contracted
                                    quantity during the currency of the contract at the contracted rates. Bidders are bound to
                                    accept the orders accordingly.</div>
-                                 <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button> <button type="button" (click)="approve()" class="btn btn-primary">Yes</button></div>
+                                 <div class="modal-footer"> <button type="button" class="btn btn-secondary" (click)="unapprove()" data-bs-dismiss="modal">No Unapprove</button> <button type="button" (click)="approve()" data-bs-dismiss="modal" class="btn btn-primary">Yes Approve</button></div>
                               </div>
                            </div>
                         </div>

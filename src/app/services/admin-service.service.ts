@@ -69,6 +69,39 @@ export class AdminServiceService {
     return this.http.post<any>(`http://localhost:3000/getTenders`,body,{headers:this.headers}).toPromise();
   }
 
-  
+  gettenderbyid(tenderId:any){
+    var body:any = {tenderId : tenderId}
+    return this.http.post<any>(`http://localhost:3000/getTendersbyid`,body,{headers:this.headers}).toPromise();
+  }
+
+  bidstatusbyid(tenderId:any){
+    var body:any = {tenderId : tenderId}
+    return this.http.post<any>(`http://localhost:3000/bidstatusbyid`,body,{headers:this.headers}).toPromise();
+  }
+
+  getbids(tenderId:any){
+    var body:any = {tenderId : tenderId}
+    return this.http.post<any>(`http://localhost:3000/getbids`,body,{headers:this.headers}).toPromise();
+  }
+
+  getbid(bidId:any){
+    var body:any = {bidId : bidId}
+    return this.http.post<any>(`http://localhost:3000/getbid`,body,{headers:this.headers}).toPromise();
+  }
+
+  bidapprove(bidId:any){
+    var body:any = {bidId : bidId}
+    return this.http.post<any>(`http://localhost:3000/bidapprove`,body,{headers:this.headers}).toPromise();
+  }
+
+  bidunapprove(bidId:any){
+    var body:any = {bidId : bidId}
+    return this.http.post<any>(`http://localhost:3000/bidunapprove`,body,{headers:this.headers}).toPromise();
+  }
+
+  removetender(tenderId:any){
+    var body:any = {tenderId : tenderId}
+    return this.http.post<any>(`http://localhost:3000/removetender`,body,{headers:this.headers}).toPromise();
+  }
 
 }

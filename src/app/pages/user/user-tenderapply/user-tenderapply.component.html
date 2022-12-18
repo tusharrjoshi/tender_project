@@ -16,7 +16,7 @@
               <div class="card">
                  <div class="card-body">
                     <h5 class="card-title">Bid</h5>
-                    <form [formGroup]="applytenderpg" (ngSubmit)="apply()" novalidate>
+                    <form [formGroup]="applytenderpg"  novalidate>
                        <div class="row mb-3">
                           <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10"> <input type="text" class="form-control" formControlName="applyname"></div>
@@ -50,7 +50,7 @@
                         <div class="col-sm-10"> <input type="text" class="form-control" formControlName="biddetails"></div>
                      </div>
                      <div class="text-center">
-                        <button type="submit" class="btn btn-primary rounded-pill " >Make Payment</button>
+                        <button type="submit" class="btn btn-primary rounded-pill " (click)="apply()">Apply</button>
                      </div>
 
                     </form>

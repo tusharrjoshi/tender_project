@@ -11,14 +11,20 @@ export class ServiceService {
   adminlogin:string='';
   adminpassword:string='';
   
-  constructor(public http: HttpClient) { }
+  headers= new HttpHeaders();
+  t:any;
+  constructor(public http: HttpClient) {
+    this.t = localStorage.getItem('usertoken')
+    console.log(this.t);
+    
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append("Authorization", "Bearer " + this.t);
+   }
   
 
   api = 'http://localhost:3000/';
   
-  headers = new HttpHeaders({
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
-  options = { headers: this.headers };
+  
 
   isuser(username:any,password:any){
     var body:any={
@@ -86,6 +92,23 @@ export class ServiceService {
 
   getallTenders(){
     return this.http.get(`http://localhost:3000/getallTenders`).toPromise();
+  }
+
+  bid(tenderid:any,userid:any,bid:any){
+    var body = {
+      tenderId : tenderid,
+      userId : userid,
+      bidname : bid.bidname,
+      biddate : bid.biddate,
+      bidamount : bid.bidamount,
+      bidphone: bid.bidphone,
+      bidgst : bid.bidgst,
+      bidaccount : bid.bidaccount,
+      biddetails : bid.biddetails
+    }
+    console.log(body);
+    
+    return this.http.post<any>(`http://localhost:3000/bid`,body,{headers:this.headers}).toPromise();
   }
 
 }

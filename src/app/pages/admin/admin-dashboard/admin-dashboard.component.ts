@@ -20,7 +20,6 @@ export class AdminDashboardComponent implements OnInit {
     var getdata:any = localStorage.getItem('adminuser')
     this.userID = localStorage.getItem('adminid');
     var cred:any = JSON.parse(getdata);
-    console.log("befr api called");
     
     
     this.adminservice.getTenders(this.userID).then((res:any)=>{
@@ -43,6 +42,24 @@ export class AdminDashboardComponent implements OnInit {
     s.src = "../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(s);
   }
+
+  remove(tenderId:any){
+    this.adminservice.removetender(tenderId).then((res:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Deleted!',
+        type:'success',
+        message:  "tender deleted successfully"
+        },width:'300px'}).afterClosed().subscribe((res)=>{window.location.reload();})
+    }).catch((err:any)=>{
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Server error!',
+        type:'alert',
+        message:  "Failed to connect to server"
+        },width:'300px'})
+    })
+  }
+
+  
 
 }
 

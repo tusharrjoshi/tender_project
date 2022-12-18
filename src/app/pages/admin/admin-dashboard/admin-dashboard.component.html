@@ -22,7 +22,7 @@
                               <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-file-earmark-plus"></i></div>
                               <div class="ps-3">
                                  <h6>Add new tender</h6>
-                                 <span class="text-primary small pt-1 fw-bold">Total tenders:</span> <span class="text-muted small pt-2 ps-1">current tender number</span>
+                                 <span class="text-primary small pt-1 fw-bold">Click here to add new tenders</span> 
                               </div>
                            </div>
                         </div>
@@ -42,6 +42,7 @@
                                  <th scope="col">Close Date</th>
                                  <th scope="col">Supplier</th>
                                  <th scope="col">View | Bids</th>
+                                 <th scope="col">Remove</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -54,9 +55,10 @@
                                  <td>{{tender.closingDate}}</td>
                                  <td>{{tender.supplier}}</td>
                                  <td>
-                                    <button style="margin-right:10px ;" type="button"  class="btn btn-info btn-sm"  [routerLink]="['/','admin-tenderinfo']" [queryParams]="{ tenderid: tender.tenderid}"><i class="bi bi-info-circle"></i></button>
-                                    <button *ngIf="tender.notify" type="button"  class="btn btn-warning btn-sm" [routerLink]="['/','admin-tenderbid']" [queryParams]="{ tenderid: tender.tenderid}"><i class="bi bi-bell -fill"></i></button>                                  
+                                    <button style="margin-right:10px ;" type="button"  class="btn btn-info btn-sm"  [routerLink]="['/','admin-tenderinfo']" [queryParams]="{ tenderid: tender.tenderId}"><i class="bi bi-info-circle"></i></button>
+                                    <button *ngIf="tender.bid" type="button"  class="btn btn-warning btn-sm" [routerLink]="['/','admin-tenderbid']" [queryParams]="{ tenderid: tender.tenderId}"><i class="bi bi-bell -fill"></i></button>                                  
                                  </td>
+                                 <td><i class="ri-delete-bin-5-line text-danger fa-5px" style="font-size: 25px;" (click)="remove(tender.tenderId)"></i></td>
                               </tr>
                               
                            </tbody>

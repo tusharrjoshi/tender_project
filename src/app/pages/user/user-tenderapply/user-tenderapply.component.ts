@@ -13,28 +13,59 @@ import { AdminServiceService } from 'src/app/services/admin-service.service';
 })
 export class UserTenderapplyComponent implements OnInit {
 
-  constructor(private router: Router,private  dialog:  MatDialog,public service: AdminServiceService,private route: ActivatedRoute) { }
+  constructor(private router: Router,private  dialog:  MatDialog,public service: ServiceService,private route: ActivatedRoute,private adminservice : AdminServiceService) { }
 
   bid:any;
   tenderid:any;
+  userid:any;
   ngOnInit(): void {
     this.route.queryParams
       .subscribe((params:any) => {
         this.tenderid = params.tenderid;
       })
+    this.userid = localStorage.getItem('userid')
   }
   applytenderpg = new FormGroup({
     applyname: new FormControl(''),
     applydate: new FormControl(''),
     applyamount: new FormControl(''),
+    applyphone: new FormControl(''),
     applygst: new FormControl(''),
     applyaccount: new FormControl(''),
     biddetails: new FormControl('')
   });
 
   apply(){
-    this.bid = {bidname: this.applytenderpg.value['applyname'],biddate:this.applytenderpg.value['applydate'],bidamount: this.applytenderpg.value['applyamount'],bidgst: this.applytenderpg.value['applygst'],bidaccount:this.applytenderpg.value['applyaccount'],biddetails: this.applytenderpg.value['biddetails']}
-    console.log(this.bid);
+    this.bid = {bidname: this.applytenderpg.value['applyname'],biddate:this.applytenderpg.value['applydate'],bidamount: this.applytenderpg.value['applyamount'],bidgst: this.applytenderpg.value['applygst'],bidphone: this.applytenderpg.value['applyphone'],bidaccount:this.applytenderpg.value['applyaccount'],biddetails: this.applytenderpg.value['biddetails']}
+    this.service.bid(this.tenderid,this.userid,this.bid).then((res)=>{
+      
+      this.dialog.open(PopupComponent,{ data: {
+        title:'Success!',
+        type:'success',
+        message:  res,
+        },width:'300px'})
+
+    })
+    .catch((err:any)=>{
+      this.adminservice.bidstatusbyid(this.tenderid).then((res:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Success!',
+          type:'success',
+          message:  "Make Payment",
+          },width:'300px'})
+      }).catch((err:any)=>{
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Success!',
+          type:'success',
+          message:  "Make Payment",
+          },width:'300px'})
+        
+      })
+      
+      
+      });
+
+    
     
   }
 

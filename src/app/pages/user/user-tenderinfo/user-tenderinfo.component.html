@@ -4,8 +4,8 @@
       <nav>
          <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Tender</li>
+            <li class="breadcrumb-item"><a routerLink="/admin-dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tender information</li>
          </ol>
       </nav>
    </div>
@@ -69,8 +69,8 @@
                            <td>{{product.productdescription}}</td>
                            <td>{{product.productquantity}}</td>
                            <td>{{product.productunits}}</td>
-                           <td>{{product.attachements}}</td>
-                           <td>{{product.otherattachements}}</td>
+                           <td><i class="bi bi-file-earmark-pdf text-danger fa-5px" style="font-size: 25px;"></i></td>
+                           <td><i class="bi bi-file-earmark-pdf text-danger fa-5px" style="font-size: 25px;"></i></td>
                            
                         </tr>
                         
@@ -78,8 +78,8 @@
                      </tbody>
                   </table>
                   <div class="text-center">
-                     <button type="submit" class="btn btn-primary rounded-pill" [routerLink]="['/','dashboard']" style="margin-right: 10px;">Dashboard</button>
-                     <button type="submit" class="btn btn-outline-info rounded-pill " [routerLink]="['/','user-tenderapply']">Apply</button>
+                     <button type="submit" class="btn btn-primary rounded-pill " [routerLink]="['/','dashboard']" style="margin: 5px;">Dashboard</button>
+                     <button type="submit" class="btn btn-outline-info rounded-pill " [routerLink]="['/','user-tenderapply']" [queryParams]="{ tenderid: tender.tenderId}">Apply</button>
                   </div>
                    </form>
                 </div>

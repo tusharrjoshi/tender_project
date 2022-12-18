@@ -16,8 +16,7 @@ export class AdminTenderbidComponent implements OnInit {
   
 
   tenderid :any;
-  tenderbidlist:any
-  bidid:any;
+  bids:any;
 
   filterpg = new FormGroup({
     one: new FormControl(''),
@@ -33,20 +32,19 @@ export class AdminTenderbidComponent implements OnInit {
     .subscribe((params:any) => {
       this.tenderid = params.tenderid;
     })
-    var getdata:any = localStorage.getItem('adminuser')
-    var cred:any = JSON.parse(getdata);
-    this.service.gettenderlist(cred[0]).then((res:any)=>{
-      this.tenderbidlist = res.tenderlist;
-      console.log(this.tenderbidlist);
+    
+    this.service.getbids(this.tenderid).then((res)=>{
+      this.bids = res.data;
+      console.log(this.bids);
       
     }).catch((err:any)=>{
-
-
+      
       this.dialog.open(PopupComponent,{ data: {
-        title:'Server error!',
-        type:'alert',
-        message:  "Failed to connect to server"
-        },width:'300px'})});
+        title:'Success!',
+        type:'success',
+        message:  "Make Payment",
+        },width:'300px'})
+    })
   }
 
   filter(){

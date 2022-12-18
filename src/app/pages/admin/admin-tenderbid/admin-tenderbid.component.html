@@ -55,23 +55,28 @@
                            <thead>
                               <tr>
                                 <th scope="col">S.no</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Supplier</th>
-                                <th scope="col">Product</th> 
-                                <th scope="col">Total Score</th>
-                                <th scope="col">Bid Result</th>
+                                <th scope="col">BidId</th>
+                                <th scope="col">Bidder Name</th>
+                                <th scope="col">UserId</th>
+                                <th scope="col">Bid Date</th> 
+                                <th scope="col">Bid Amount</th>
                               </tr>
                            </thead>
                            <tbody>
-                              <tr *ngFor="let tender of tenderbidlist ; let i=index">
+                              <tr *ngFor="let bid of bids ; let i=index">
                                  <th scope="row">{{i+1}}</th>
-                                 <td>{{tender.tenderid}}</td>
-                                 <td>{{tender.tendername}}</td>
-                                 <td>{{tender.organization}}</td>
-                                 <td>{{tender.uploaddate}}</td>
-                                 <td>{{tender.enddate}}</td>
+                                 <td>{{bid.bidId}}</td>
+                                 <td>{{bid.bidname}}</td>
+                                 <td>{{bid.userID}}</td>
+                                 <td>{{bid.biddate}}</td>
+                                 <td>{{bid.bidamount}}</td>
                                  <td>
-                                    <button style="margin-right:10px ;" type="button"  class="btn btn-info btn-sm"  [routerLink]="['/','admin-tenderbidinfo']" [queryParams]="{ bidid: bidid}"><i class="bi bi-info-circle"></i></button>                                
+                                    
+                                    <span *ngIf="bid.approved " class="badge border-success border-1 text-success">Approved</span>
+                                    <span *ngIf="!bid.approved " class="badge border-warning border-1 text-warning">Notapproved</span>
+                                    </td>
+                                 <td>
+                                    <button style="margin-right:10px ;" type="button"  class="btn btn-info btn-sm"  [routerLink]="['/','admin-tenderbidinfo']" [queryParams]="{ bidId: bid.bidId}"><i class="bi bi-info-circle"></i></button>                                
                                  </td>
                               </tr>
                               
