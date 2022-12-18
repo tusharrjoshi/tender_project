@@ -111,4 +111,11 @@ export class ServiceService {
     return this.http.post<any>(`http://localhost:3000/bid`,body,{headers:this.headers}).toPromise();
   }
 
+  addapplynotification(target:any,tenderId:any,username:any){
+    var body:any = {target:target, tenderId:tenderId , username : username}
+    console.log(body);
+    
+    return this.http.post<any>(`http://localhost:3000/addapplynotification`,body,{headers:this.headers}).toPromise();
+  }
+
 }

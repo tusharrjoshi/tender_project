@@ -18,12 +18,17 @@ export class UserTenderapplyComponent implements OnInit {
   bid:any;
   tenderid:any;
   userid:any;
+  username:any;
+  adminName:any;
   ngOnInit(): void {
     this.route.queryParams
       .subscribe((params:any) => {
         this.tenderid = params.tenderid;
+        this.adminName = params.adminname
       })
     this.userid = localStorage.getItem('userid')
+    this.username = localStorage.getItem('username')
+    
   }
   applytenderpg = new FormGroup({
     applyname: new FormControl(''),
@@ -58,7 +63,14 @@ export class UserTenderapplyComponent implements OnInit {
           title:'Success!',
           type:'success',
           message:  "Make Payment",
-          },width:'300px'})
+          button : "Pay",
+          },width:'300px'}).afterClosed().subscribe((res)=>{
+            this.service.addapplynotification(this.adminName,this.tenderid,this.username).then((res)=>{
+              console.log("done");
+              
+            })
+            this.router.navigate(['/','user-makepayment'])
+          })
         
       })
       

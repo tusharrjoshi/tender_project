@@ -19,11 +19,8 @@ export class AdminTenderbidComponent implements OnInit {
   bids:any;
 
   filterpg = new FormGroup({
-    one: new FormControl(''),
-    two: new FormControl(''),
-    three: new FormControl(''),
-    four: new FormControl(''),
-    five: new FormControl(''),
+    radio: new FormControl(''),
+    
    
   });
 
@@ -48,7 +45,82 @@ export class AdminTenderbidComponent implements OnInit {
   }
 
   filter(){
-    
+    if(this.filterpg.value['radio']=='alph'){
+      console.log(111);
+      
+      this.service.filterbids(this.tenderid,'bidname').then((res)=>{
+        this.bids = res.data;
+        console.warn(this.bids);
+        
+      }).catch((err:any)=>{
+        
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert',
+          type:'alert',
+          message:  "Server Error",
+          },width:'300px'})
+      })
+    }
+
+    else if(this.filterpg.value['radio']=='max'){
+      this.service.filterbids(this.tenderid,'bidamount DESC').then((res)=>{
+        this.bids = res.data;
+        console.warn(this.bids);
+        
+      }).catch((err:any)=>{
+        
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert',
+          type:'alert',
+          message:  "Server Error",
+          },width:'300px'})
+      })
+    }
+
+    else if(this.filterpg.value['radio']=='min'){
+      this.service.filterbids(this.tenderid,'bidamount').then((res)=>{
+        this.bids = res.data;
+        console.warn(this.bids);
+        
+      }).catch((err:any)=>{
+        
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert',
+          type:'alert',
+          message:  "Server Error",
+          },width:'300px'})
+      })
+    }
+
+    else if(this.filterpg.value['radio']=='latest'){
+      this.service.filterbids(this.tenderid,'DATE(biddate) DESC').then((res)=>{
+        this.bids = res.data;
+        console.warn(this.bids);
+        
+      }).catch((err:any)=>{
+        
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert',
+          type:'alert',
+          message:  "Server Error",
+          },width:'300px'})
+      })
+    }
+
+    else if(this.filterpg.value['radio']=='oldest'){
+      this.service.filterbids(this.tenderid,'DATE(biddate)').then((res)=>{
+        this.bids = res.data;
+        console.warn(this.bids);
+        
+      }).catch((err:any)=>{
+        
+        this.dialog.open(PopupComponent,{ data: {
+          title:'Alert',
+          type:'alert',
+          message:  "Server Error",
+          },width:'300px'})
+      })
+    }
   }
 
   

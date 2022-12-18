@@ -264,6 +264,19 @@ app.post('/getbids',(req,res)=>{
   })
 })
 
+app.post('/filterbids',(req,res)=>{
+  let q = `SELECT * FROM bids WHERE tenderId = ${req.body.tenderId} ORDER BY ${req.body.order}`
+  db.query(q,(err,result)=>{
+    if(err){
+      console.log(err)
+      console.log(q)
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
 app.post('/getbid',(req,res)=>{
   let q = `SELECT * FROM bids WHERE bidId = ${req.body.bidId}`
   db.query(q,(err,result)=>{
@@ -329,6 +342,20 @@ app.post('/removetender',(req,res)=>{
       res.status(400).send({status:false,data:err})
     }else{
       res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/addapplynotification' ,(req,res)=>{
+
+  let { target,tenderId,username }= req.body
+  let q = `INSERT INTO notification (target,heading,content) VALUES ('${target}', 'new bid placed', 'your tender with tenderid:${tenderId} has a new bid by user ${username}')`;
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(200).send({status:false, data:err})
+
+    }else{
+      res.status(401).send({status:true,data:result})
     }
   })
 })

@@ -104,4 +104,9 @@ export class AdminServiceService {
     return this.http.post<any>(`http://localhost:3000/removetender`,body,{headers:this.headers}).toPromise();
   }
 
+  filterbids(tenderId:any,order:any){
+    var body:any = {tenderId : tenderId,order:order}
+    return this.http.post<any>(`http://localhost:3000/filterbids`,body,{headers:this.headers}).toPromise();
+  }
+
 }

@@ -20,13 +20,26 @@
                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body"> 
                            <form [formGroup]="filterpg">
-                              <ul class="list-group">
-                                 <li class="list-group-item"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." formControlName="one"> First checkbox</li>
-                                 <li class="list-group-item"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." formControlName="two"> Second checkbox</li>
-                                 <li class="list-group-item"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." formControlName="three"> Third checkbox</li>
-                                 <li class="list-group-item"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." formControlName="four"> Fourth checkbox</li>
-                                 <li class="list-group-item"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." formControlName="five"> Fifth checkbox</li>
-                              </ul>
+                              <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1" value="alph" formControlName="radio" checked >
+                                 <label class="form-check-label" for="flexRadioDefault1">Alphbatically</label>
+                               </div>
+                               <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" value="max" formControlName="radio">
+                                 <label class="form-check-label" for="flexRadioDefault2">maximum bid first</label>
+                               </div>
+                               <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" value="min" formControlName="radio">
+                                 <label class="form-check-label" for="flexRadioDefault2">minimum bid first</label>
+                               </div>
+                               <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" value="latest" formControlName="radio">
+                                 <label class="form-check-label" for="flexRadioDefault2">latest bids first</label>
+                               </div>
+                               <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" value="oldest" formControlName="radio">
+                                 <label class="form-check-label" for="flexRadioDefault2">oldest bids</label>
+                               </div>
                               <button type="submit" class="btn btn-primary rounded-pill " style="margin:10px;" (click)="filter()">Filter</button>
                            </form>
 

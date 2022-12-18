@@ -64,8 +64,11 @@ export class PagesLoginComponent implements OnInit {
         if (res.status){
           if(res.user.isAdmin){
             // sessionStorage.setItem("admintoken",res.token);
+            console.log(res.user);
+            
             localStorage.setItem("admintoken", res.token);
             localStorage.setItem("admin",username)
+            localStorage.setItem("adminname",res.user.username)
             localStorage.setItem("adminid",res.user.user_id)
             this.dialog.open(PopupComponent,{ data: {
               title:'Success!',

@@ -44,6 +44,7 @@ export class UserLoginComponent implements OnInit {
         
         localStorage.setItem("usertoken", res.token);
         localStorage.setItem("user",username)
+        localStorage.setItem("username",res.user.username)
         localStorage.setItem("userid",res.user.user_id)
         this.dialog.open(PopupComponent,{ data: {
           title:'Success!',

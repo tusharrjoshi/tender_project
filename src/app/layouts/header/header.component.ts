@@ -9,8 +9,9 @@ import { DOCUMENT } from '@angular/common'
 export class HeaderComponent implements OnInit {
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
-
+  username:any;
   ngOnInit(): void {
+    this.username=localStorage.getItem('username')
   }
   sidebarToggle()
   {
