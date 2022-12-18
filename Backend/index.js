@@ -189,15 +189,38 @@ app.get("/islogin", middleware.isLoggedIn, (req, res) => {
   });
 });
 
-app.post('/addTendor',middleware.isLoggedIn ,(req,res)=>{
-  let { tendertitle,openingdate,closingdate,tendertype,supplier,product }= req.body
-  let q = `INSERT INTO table_name (tendertitle,openingdate,closingdate,tendertype,supplier,product)VALUES ('${tendertitle}','${openingdate}','${closingdate}','${tendertype}',${supplier}','${product}');`
+app.post('/addTendor' ,(req,res)=>{
+
+  let { adminName , tendertitle,openingdate,closingdate,tendertype,supplier,product,userID }= req.body
+  console.log(openingdate, closingdate);
+  let q = `INSERT INTO tenders (adminName, tenderTitle, openigDate, closingDate, tenderType, supplier, product,userID) VALUES ('${adminName}', '${tendertitle}', '${openingdate}', '${closingdate}', '${tendertype}', '${supplier}', '${product}',${userID})`;
   db.query(q,(err,result)=>{
     if(err){
       res.status(200).send({status:false, data:err})
 
     }else{
       res.status(401).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/getTenders',(req,res)=>{
+  let q = `SELECT * FROM tenders WHERE userID = ${req.body.userID}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+app.get('/getAllTenders',(req,res)=>{
+  let q = `SELECT * FROM tenders`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
     }
   })
 })

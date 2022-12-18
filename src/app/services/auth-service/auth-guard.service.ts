@@ -19,8 +19,8 @@ export class AuthGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree {
-    if (sessionStorage.getItem("usertoken")) {
-      var token = sessionStorage.getItem("usertoken");
+    if (localStorage.getItem("usertoken")) {
+      var token = localStorage.getItem("usertoken");
       
       this.service.isloggedin(token).then((res: any) => {
         

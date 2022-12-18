@@ -84,4 +84,8 @@ export class ServiceService {
     return this.http.post<any>(`${this.api}register`,body).toPromise();
   }
 
+  getallTenders(){
+    return this.http.get(`http://localhost:3000/getallTenders`).toPromise();
+  }
+
 }

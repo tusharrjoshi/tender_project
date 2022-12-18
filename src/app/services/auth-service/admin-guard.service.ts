@@ -19,8 +19,8 @@ export class AdminGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree {
-    if (sessionStorage.getItem("admintoken")) {
-      var token = sessionStorage.getItem("admintoken");
+    if (localStorage.getItem("admintoken")) {
+      var token = localStorage.getItem("admintoken");
       
       this.service.isloggedin(token).then((res: any) => {
         

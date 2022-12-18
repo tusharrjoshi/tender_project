@@ -40,7 +40,11 @@ export class UserLoginComponent implements OnInit {
     else{
     this.service.isuser(username,password).then((res:any)=>{
       if (res.status){
-        sessionStorage.setItem("usertoken", res.token);
+        console.log(res);
+        
+        localStorage.setItem("usertoken", res.token);
+        localStorage.setItem("user",username)
+        localStorage.setItem("userid",res.user.user_id)
         this.dialog.open(PopupComponent,{ data: {
           title:'Success!',
           type:'success',

@@ -1,5 +1,6 @@
 import {Component, OnInit, ElementRef  } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
+import { ServiceService } from 'src/app/services/service.service';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 import { Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef,private adminservice:AdminServiceService,private  dialog:  MatDialog,private router:Router) { }
+  constructor(private elementRef: ElementRef,private adminservice:AdminServiceService,private  dialog:  MatDialog,private router:Router,private service :ServiceService) { }
 
   sno:number=1;
   
@@ -23,8 +24,8 @@ export class DashboardComponent implements OnInit {
     console.log("befr api called");
     
     
-    this.adminservice.gettenderlist(cred[0]).then((res:any)=>{
-      this.tenderlist = res.tenderlist;
+    this.service.getallTenders().then((res:any)=>{
+      this.tenderlist = res.data;
       console.log(this.tenderlist);
       
     }).catch((err:any)=>{

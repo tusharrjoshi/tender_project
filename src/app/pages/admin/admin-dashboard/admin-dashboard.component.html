@@ -37,20 +37,22 @@
                                  <th scope="col">S.No.</th>
                                  <th scope="col">Tender Id</th>
                                  <th scope="col">Tender Name</th>
-                                 <th scope="col">Tender Organization</th>
-                                 <th scope="col">Upload Date</th>
+                                 <th scope="col">Tender Type</th>
+                                 <th scope="col">Opening Date</th>
                                  <th scope="col">Close Date</th>
+                                 <th scope="col">Supplier</th>
                                  <th scope="col">View | Bids</th>
                               </tr>
                            </thead>
                            <tbody>
                               <tr *ngFor="let tender of tenderlist ; let i=index">
                                  <th scope="row">{{i+1}}</th>
-                                 <td>{{tender.tenderid}}</td>
-                                 <td>{{tender.tendername}}</td>
-                                 <td>{{tender.organization}}</td>
-                                 <td>{{tender.uploaddate}}</td>
-                                 <td>{{tender.enddate}}</td>
+                                 <td>{{tender.tenderId}}</td>
+                                 <td>{{tender.tenderTitle}}</td>
+                                 <td>{{tender.tenderType}}</td>
+                                 <td>{{tender.openigDate}}</td>
+                                 <td>{{tender.closingDate}}</td>
+                                 <td>{{tender.supplier}}</td>
                                  <td>
                                     <button style="margin-right:10px ;" type="button"  class="btn btn-info btn-sm"  [routerLink]="['/','admin-tenderinfo']" [queryParams]="{ tenderid: tender.tenderid}"><i class="bi bi-info-circle"></i></button>
                                     <button *ngIf="tender.notify" type="button"  class="btn btn-warning btn-sm" [routerLink]="['/','admin-tenderbid']" [queryParams]="{ tenderid: tender.tenderid}"><i class="bi bi-bell -fill"></i></button>                                  

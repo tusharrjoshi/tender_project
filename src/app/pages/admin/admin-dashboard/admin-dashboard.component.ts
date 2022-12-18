@@ -15,15 +15,18 @@ export class AdminDashboardComponent implements OnInit {
   sno:number=1;
   
   tenderlist:any ;
-
+  userID:any;
   ngOnInit(): void {
     var getdata:any = localStorage.getItem('adminuser')
+    this.userID = localStorage.getItem('adminid');
     var cred:any = JSON.parse(getdata);
     console.log("befr api called");
     
     
-    this.adminservice.gettenderlist(cred[0]).then((res:any)=>{
-      this.tenderlist = res.tenderlist;
+    this.adminservice.getTenders(this.userID).then((res:any)=>{
+      console.warn(res);
+      
+      this.tenderlist = res.data;
       console.log(this.tenderlist);
       
     }).catch((err:any)=>{

@@ -26,17 +26,19 @@
                                 <th scope="col">Tender Organization</th>
                                 <th scope="col">Upload Date</th>
                                 <th scope="col">Close Date</th>
+                                <th scope="col">Supplier</th>
                                 <th scope="col">View</th>
                              </tr>
                           </thead>
                           <tbody>
                              <tr *ngFor="let tender of tenderlist ; let i=index">
                                 <th scope="row">{{i+1}}</th>
-                                <td>{{tender.tenderid}}</td>
-                                <td>{{tender.tendername}}</td>
-                                <td>{{tender.organization}}</td>
-                                <td>{{tender.uploaddate}}</td>
-                                <td>{{tender.enddate}}</td>
+                                <td>{{tender.tenderId}}</td>
+                                 <td>{{tender.tenderTitle}}</td>
+                                 <td>{{tender.tenderType}}</td>
+                                 <td>{{tender.openigDate}}</td>
+                                 <td>{{tender.closingDate}}</td>
+                                 <td>{{tender.supplier}}</td>
                                 <td>
                                  <button style="margin-right:10px ;" type="button"  class="btn btn-outline-info btn-sm rounded-pill"  [routerLink]="['/','user-tenderinfo']" [queryParams]="{ tenderid: tender.tenderid}">view</button>
                                  <!-- <button *ngIf="tender.notify" type="button"  class="btn btn-warning btn-sm" [routerLink]="['/','user-tenderbid']" [queryParams]="{ tenderid: tender.tenderid}"><i class="bi bi-bell -fill"></i></button>                                   -->
