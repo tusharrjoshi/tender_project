@@ -18,9 +18,9 @@ app.use(
 // Register API
 
 app.post("/register", (req, res) => {
-  const { email, password, name, phone } = req.body;
+  const { email, password, username, phone } = req.body;
   const user = {
-    name,
+    username,
     email,
     password,
     phone,
@@ -43,6 +43,7 @@ app.post("/register", (req, res) => {
             user.password = hash;
             db.query(`INSERT INTO tenderusers SET ?`, user, (err, result) => {
               if (err) {
+  
                 return res.status(400).send(err);
               } else {
                 db.query(
@@ -192,7 +193,6 @@ app.get("/islogin", middleware.isLoggedIn, (req, res) => {
 app.post('/addTendor' ,(req,res)=>{
 
   let { adminName , tendertitle,openingdate,closingdate,tendertype,supplier,product,userID }= req.body
-  console.log(openingdate, closingdate);
   let q = `INSERT INTO tenders (adminName, tenderTitle, openigDate, closingDate, tenderType, supplier, product,userID) VALUES ('${adminName}', '${tendertitle}', '${openingdate}', '${closingdate}', '${tendertype}', '${supplier}', '${product}',${userID})`;
   db.query(q,(err,result)=>{
     if(err){
@@ -207,7 +207,6 @@ app.post('/addTendor' ,(req,res)=>{
 app.post('/bidstatusbyid' ,(req,res)=>{
 
   let {tenderId }= req.body
-  console.log(tenderId);
   let q = `UPDATE tenders SET bid = 1 WHERE tenderId = ${tenderId}`;
   db.query(q,(err,result)=>{
     if(err){
@@ -268,8 +267,6 @@ app.post('/filterbids',(req,res)=>{
   let q = `SELECT * FROM bids WHERE tenderId = ${req.body.tenderId} ORDER BY ${req.body.order}`
   db.query(q,(err,result)=>{
     if(err){
-      console.log(err)
-      console.log(q)
       res.status(400).send({status:false,data:err})
     }else{
       res.status(200).send({status:true,data:result})
@@ -295,11 +292,9 @@ app.post('/bid' ,(req,res)=>{
   let q = `INSERT INTO bids (tenderID,bidname, biddate, bidamount	, bidphone, bidgst, bidaccount	,biddetails,userID) VALUES ('${tenderId}' , '${bidname}','${biddate}','${bidamount}','${bidphone}','${bidgst}','${bidaccount}','${biddetails}',${userId})`;
   db.query(q,(err,result)=>{
     if(err){
-      console.log(err)
       res.status(200).send({status:false, data:err})
 
     }else{
-      console.log(44)
       res.status(401).send({status:true,data:result})
     }
   })
@@ -346,10 +341,10 @@ app.post('/removetender',(req,res)=>{
   })
 })
 
-app.post('/addapplynotification' ,(req,res)=>{
+app.post('/addnotification' ,(req,res)=>{
 
-  let { target,tenderId,username }= req.body
-  let q = `INSERT INTO notification (target,heading,content) VALUES ('${target}', 'new bid placed', 'your tender with tenderid:${tenderId} has a new bid by user ${username}')`;
+  let { target,heading,content }= req.body
+  let q = `INSERT INTO notification (target,heading,content) VALUES ('${target}', '${heading}','${content}')`;
   db.query(q,(err,result)=>{
     if(err){
       res.status(200).send({status:false, data:err})
@@ -360,7 +355,39 @@ app.post('/addapplynotification' ,(req,res)=>{
   })
 })
 
+app.post('/getnotification',(req,res)=>{
+  let q = `SELECT * FROM notification WHERE target = '${req.body.target}' `
+  db.query(q,(err,result)=>{
+    if(err){
+      console.log(err)
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
 
+app.post('/removenotification',(req,res)=>{
+  let q = `DELETE FROM notification WHERE id =  ${req.body.id}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
+
+app.post('/getuserdata',(req,res)=>{
+  let q = `SELECT * FROM tenderusers WHERE user_id = ${req.body.userID}`
+  db.query(q,(err,result)=>{
+    if(err){
+      res.status(400).send({status:false,data:err})
+    }else{
+      res.status(200).send({status:true,data:result})
+    }
+  })
+})
 
 ////////////////////////////////////////////////////////temp api
 app.get("/", (req, res) => {

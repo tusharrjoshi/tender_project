@@ -79,7 +79,7 @@
                   </table>
                   <div class="text-center">
                      <button type="submit" class="btn btn-primary rounded-pill " [routerLink]="['/','dashboard']" style="margin: 5px;">Dashboard</button>
-                     <button type="submit" class="btn btn-outline-info rounded-pill " [routerLink]="['/','user-tenderapply']" [queryParams]="{ tenderid: tender.tenderId,adminname:tender.adminName}">Apply</button>
+                     <button type="submit" class="btn btn-outline-info rounded-pill " [routerLink]="['/','user-tenderapply']" [queryParams]="{ tenderid: tender.tenderId,adminid:tender.userID}">Apply</button>
                   </div>
                    </form>
                 </div>

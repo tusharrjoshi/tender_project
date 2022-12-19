@@ -51,12 +51,15 @@ export class RegisterotpComponent implements OnInit {
   }
 
   proceed(){
-    var obj:any = {name : this.name,email : this.email, phone:this.phone,username:this.username,password:this.password}
+    var obj:any = {username : this.name,email : this.email, phone:this.phone,password:this.password}
     var otp:any = this.registerotppg.value['otp'];
     if(otp){this.service.validateregisterotp(otp).then((res:any)=>{
       if(res.valid){
+
         this.service.registernewuser(obj).then((res:any)=>{
           if(res.userData){
+            console.log(444);
+            
             this.dialog.open(PopupComponent,{ data: {
               title:'Validation Successfull!',
               type:'success',
@@ -88,7 +91,7 @@ export class RegisterotpComponent implements OnInit {
     })
     .catch((err:any)=>{
       this.dialog.open(PopupComponent,{ data: {
-        title:'Server error!',
+        title:'Server errorr!',
         type:'alert',
         message:  "Failed to connect to server"
         },width:'300px'});

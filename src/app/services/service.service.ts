@@ -111,11 +111,17 @@ export class ServiceService {
     return this.http.post<any>(`http://localhost:3000/bid`,body,{headers:this.headers}).toPromise();
   }
 
-  addapplynotification(target:any,tenderId:any,username:any){
-    var body:any = {target:target, tenderId:tenderId , username : username}
+  addnotification(target:any,heading:any,content:any){
+    var body:any = {target:target, heading:heading , content : content}
     console.log(body);
     
-    return this.http.post<any>(`http://localhost:3000/addapplynotification`,body,{headers:this.headers}).toPromise();
+    return this.http.post<any>(`http://localhost:3000/addnotification`,body,{headers:this.headers}).toPromise();
+  }
+
+  getuserdata(userID:any){
+    var body:any = {userID:userID}
+    return this.http.post<any>(`http://localhost:3000/getuserdata`,body,{headers:this.headers}).toPromise();
+
   }
 
 }

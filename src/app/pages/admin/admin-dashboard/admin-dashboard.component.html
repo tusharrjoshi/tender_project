@@ -58,7 +58,22 @@
                                     <button style="margin-right:10px ;" type="button"  class="btn btn-info btn-sm"  [routerLink]="['/','admin-tenderinfo']" [queryParams]="{ tenderid: tender.tenderId}"><i class="bi bi-info-circle"></i></button>
                                     <button *ngIf="tender.bid" type="button"  class="btn btn-warning btn-sm" [routerLink]="['/','admin-tenderbid']" [queryParams]="{ tenderid: tender.tenderId}"><i class="bi bi-bell -fill"></i></button>                                  
                                  </td>
-                                 <td><i class="ri-delete-bin-5-line text-danger fa-5px" style="font-size: 25px;" (click)="remove(tender.tenderId)"></i></td>
+                                 <td>
+                                    <i class="ri-delete-bin-5-line text-danger fa-5px" style="font-size: 25px;" data-bs-toggle="modal" data-bs-target="#verticalycentered" ></i>
+                                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered"> Vertically centered </button> -->
+                                    <div class="modal fade" id="verticalycentered" tabindex="-1">
+                                       <div class="modal-dialog modal-dialog-centered">
+                                          <div class="modal-content">
+                                             <div class="modal-header">
+                                                <h1 class="modal-title text-danger">Delete</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body">Are you sure you want to delete this tender</div>
+                                             <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-danger" data-bs-target="#verticalycentered" data-bs-dismiss="modal" (click)="remove(tender.tenderId)">Delete</button></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </td>
                               </tr>
                               
                            </tbody>

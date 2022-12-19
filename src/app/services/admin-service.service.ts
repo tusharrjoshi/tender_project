@@ -109,4 +109,21 @@ export class AdminServiceService {
     return this.http.post<any>(`http://localhost:3000/filterbids`,body,{headers:this.headers}).toPromise();
   }
 
+  getnotification(target:any){
+    var body:any = {target : target}
+    return this.http.post<any>(`http://localhost:3000/getnotification`,body,{headers:this.headers}).toPromise();
+  }
+
+  removenotification(id:any){
+    var body:any = {id : id}
+    return this.http.post<any>(`http://localhost:3000/removenotification`,body,{headers:this.headers}).toPromise();
+  }
+
+  addnotification(target:any,heading:any,content:any){
+    var body:any = {target:target, heading:heading , content : content}
+    console.log(body);
+    
+    return this.http.post<any>(`http://localhost:3000/addnotification`,body,{headers:this.headers}).toPromise();
+  }
+
 }

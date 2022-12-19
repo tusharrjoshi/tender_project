@@ -19,12 +19,12 @@ export class UserTenderapplyComponent implements OnInit {
   tenderid:any;
   userid:any;
   username:any;
-  adminName:any;
+  adminid:any;
   ngOnInit(): void {
     this.route.queryParams
       .subscribe((params:any) => {
         this.tenderid = params.tenderid;
-        this.adminName = params.adminname
+        this.adminid = params.adminid
       })
     this.userid = localStorage.getItem('userid')
     this.username = localStorage.getItem('username')
@@ -64,8 +64,10 @@ export class UserTenderapplyComponent implements OnInit {
           type:'success',
           message:  "Make Payment",
           button : "Pay",
-          },width:'300px'}).afterClosed().subscribe((res)=>{
-            this.service.addapplynotification(this.adminName,this.tenderid,this.username).then((res)=>{
+          },width:'300px'}).afterClosed().subscribe((res:any)=>{
+            var heading = 'new bid placed';
+            var content = `your tender with tenderid:${this.tenderid} is placed with bid by user ${this.username}`;
+            this.service.addnotification(this.adminid,heading,content).then((res:any)=>{
               console.log("done");
               
             })

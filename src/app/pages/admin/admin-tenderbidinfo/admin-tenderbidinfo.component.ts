@@ -30,12 +30,12 @@ export class AdminTenderbidinfoComponent implements OnInit {
     applyaccount: new FormControl(''),
     biddetails: new FormControl('')
   });
-
   ngOnInit(): void {
     this.route.queryParams
       .subscribe((params:any) => {
         this.bidId  = params.bidId;
       })
+
     
     this.service.getbid(this.bidId).then((res)=>{
       this.bid = res.data[0];
@@ -72,14 +72,22 @@ export class AdminTenderbidinfoComponent implements OnInit {
         type:'success',
         message:  "Bid Approved!",
         button: "Ok"
-        },width:'300px'})
+        },width:'300px'}).afterClosed().subscribe((res:any)=>{
+          var heading = "Bid Approved";
+          var content = `Your bid with bidID:${this.bid.bidId} is approved`
+          this.service.addnotification(this.bid.userID,heading,content).then((res:any)=>{}).catch((err)=>{})
+        })
     }).catch((err:any)=>{
       this.dialog.open(PopupComponent,{ data: {
         title:'Approved!',
         type:'success',
-        message:  "Bid UnApproved!",
+        message:  "Bid Approved!",
         button: "Ok"
-        },width:'300px'})
+        },width:'300px'}).afterClosed().subscribe((res:any)=>{
+          var heading = "Bid Approved";
+          var content = `Your bid with bidID:${this.bid.bidId} is approved`
+          this.service.addnotification(this.bid.userID,heading,content).then((res:any)=>{}).catch((err)=>{})
+        })
     })
   }
 

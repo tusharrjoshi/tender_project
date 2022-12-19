@@ -34,12 +34,12 @@ export class AdminAddtenderComponent implements OnInit {
   newtender:any;
   productlist:any[]=[];
   constructor(private router: Router,private  dialog:  MatDialog,public service: AdminServiceService) { }
-
+  adminname:any;
   ngOnInit(): void {
     var getdata:any = localStorage.getItem('adminuser')
     var cred:any = JSON.parse(getdata);
     console.warn(cred);
-    
+    this.adminname = localStorage.getItem('adminname')
   }
 
   addtender(){
@@ -59,7 +59,14 @@ export class AdminAddtenderComponent implements OnInit {
           title:'Success!',
           type:'success',
           message:  "Login Successfull"
-          },width:'300px'}).afterClosed().subscribe((res)=>{this.router.navigate(['/','dashboard'])})
+          },width:'300px'}).afterClosed().subscribe((res)=>{
+            var heading = "new tender posted";
+            var content = `new tender ${this.newtender.tendertitle} is added by ${this.adminname}`
+            this.service.addnotification('user',heading,content).then((res:any)=>{
+              this.router.navigate(['/','dashboard'])
+            })
+            this.router.navigate(['/','dashboard'])
+          })
         
       }
       
@@ -72,7 +79,13 @@ export class AdminAddtenderComponent implements OnInit {
             type:'success',
             message:  "Tender Added Successfully"
             },width:'300px'})
-            // .afterClosed().subscribe((res)=>{this.router.navigate(['/','dashboard'])})
+            .afterClosed().subscribe((res)=>{
+              var heading = "new tender posted";
+              var content = `new tender ${this.newtender.tendertitle} is added by ${this.adminname}`
+              this.service.addnotification('user',heading,content).then((res:any)=>{
+              })
+              this.router.navigate(['/','admin-dashboard'])
+            })
         }
         else{
           this.dialog.open(PopupComponent,{ data: {
