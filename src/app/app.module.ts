@@ -69,6 +69,12 @@ import { UserTenderapplyComponent } from './pages/user/user-tenderapply/user-ten
 import { UserTenderinfoComponent } from './pages/user/user-tenderinfo/user-tenderinfo.component';
 import { UserMakepaymentComponent } from './pages/user/user-makepayment/user-makepayment.component';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -138,7 +144,13 @@ import { UserMakepaymentComponent } from './pages/user/user-makepayment/user-mak
     MatFormFieldModule,
     CountdownModule,
     HttpClientModule,
-    ShowHidePasswordModule
+    ShowHidePasswordModule,
+
+    
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   providers: [AuthGuardService,ServiceService,AdminGuardService,AdminServiceService],
   bootstrap: [AppComponent]

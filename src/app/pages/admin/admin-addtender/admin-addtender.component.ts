@@ -5,6 +5,14 @@ import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { PopupComponent } from 'src/app/layouts/popup/popup.component';
 import { ServiceService } from 'src/app/services/service.service';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { getStorage, ref } from "firebase/storage";
+
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+
+declare var $: any;
 
 @Component({
   selector: 'app-admin-addtender',
@@ -33,7 +41,7 @@ export class AdminAddtenderComponent implements OnInit {
 
   newtender:any;
   productlist:any[]=[];
-  constructor(private router: Router,private  dialog:  MatDialog,public service: AdminServiceService) { }
+  constructor(private router: Router,private  dialog:  MatDialog,public service: AdminServiceService,private db: AngularFireDatabase, private storage: AngularFireStorage) { }
   adminname:any;
   ngOnInit(): void {
     var getdata:any = localStorage.getItem('adminuser')
@@ -101,7 +109,7 @@ export class AdminAddtenderComponent implements OnInit {
   }
 
   addline(){
-    this.productlist.push({productname: this.addtendermodal.value['productname'],productdescription: this.addtendermodal.value['productdescription'],productquantity: this.addtendermodal.value['productquantity'],productunits: this.addtendermodal.value['productunits']})
+    this.productlist.push({productname: this.addtendermodal.value['productname'],productdescription: this.addtendermodal.value['productdescription'],productquantity: this.addtendermodal.value['productquantity'],productunits: this.addtendermodal.value['productunits'],attachementurl:this.downloadurl,otherurl:this.otherurl})
     this.addtendermodal.reset({
       'productname': '',
       'productdescription': '',
@@ -110,7 +118,53 @@ export class AdminAddtenderComponent implements OnInit {
       'attachements': '',
       'otherattachements': ''
      });
+     
 
+  }
+
+  
+  
+  uploadPercent:any;
+  per:any;
+  per2:any;
+  downloadurl:any;
+  otherurl:any;
+  task:any;
+  task2:any;
+
+
+  upload(event:any) {
+    $("#prog1").show();
+    const file = event.target.files[0];
+    const filePath:any = this.addtendermodal.value['attachements'];
+    const fileRef = this.storage.ref(filePath);
+     this.task = this.storage.upload(filePath, file);
+
+    // observe percentage changes
+    this.task.percentageChanges().subscribe((res:any)=>{this.per = parseInt(res)})
+    // get notified when the download URL is available
+    this.task.snapshotChanges().pipe(
+        finalize(() => {fileRef.getDownloadURL().subscribe((res:any)=>{this.downloadurl = res})
+        $("#prog1").hide();
+        })
+     ).subscribe()
+  }
+
+  upload2(event:any) {
+    $("#prog2").show();
+    const file = event.target.files[0];
+    const filePath:any = this.addtendermodal.value['otherattachements'];
+    const fileRef = this.storage.ref(filePath);
+     this.task2= this.storage.upload(filePath, file);
+
+    // observe percentage changes
+    this.task2.percentageChanges().subscribe((res:any)=>{this.per2 = parseInt(res)})
+    // get notified when the download URL is available
+    this.task2.snapshotChanges().pipe(
+        finalize(() => {fileRef.getDownloadURL().subscribe((res:any)=>{this.otherurl = res}) 
+        $("#prog2").hide();
+        })
+     ).subscribe()
   }
 
 }
